@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-input type="text" placeholder="Buscar"></ion-input>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="md-paging">
+
+<mbsc-scrollview [options]="contentSettings" #contentView>
+    <mbsc-scrollview-item id="pop">
+        <mbsc-listview [options]="listviewSettings">
+            <mbsc-listview-item *ngFor="let item of data.pop" icon="play" icon-align="right">
+                <img src="{{item.img}}" />
+                <h4>{{item.title}}</h4>
+                <p>{{item.artist}}</p>
+                <span>{{item.genero}}</span>
+            </mbsc-listview-item>
+        </mbsc-listview>
+    </mbsc-scrollview-item>
+</mbsc-scrollview>
+</ion-content>

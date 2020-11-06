@@ -1,0 +1,14 @@
+ion-item.selected {
+    --color: var(--ion-color-primary);
+  }
+
+ion-img
+  {
+    max-height: 35vh;
+    width: 200px;
+    margin: 10px auto;
+  }
+  
+  ion-menu.md ion-list#grupo1-list {
+    border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
+  }

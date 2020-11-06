@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>CUENTA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="enviarFormulario()">
+    <ion-item>
+      <ion-input [(ngModel)]="usuarioForm.usuario" name="usuario" type="text" placeholder="Introduce el usuario:"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="usuarioForm.password" name="pass" type="password" placeholder="Introduce la contraseña:"></ion-input>
+    </ion-item>
+    <ion-button expand="full" color="primary" type="submit">
+      Iniciar Sesión
+    </ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-searchbar
+      [(ngModel)]="miBuscador"
+      placeholder="Buscar Articulos"
+      [showCancelButton]="miStringDeCancell"
+      (ionInput)="onInput($event)"
+      (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-explore-container name="Tab Disco page"></app-explore-container>
+</ion-content>
