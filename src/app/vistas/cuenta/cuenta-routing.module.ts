@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: CuentaPage
-  }
+  },
+  // {
+  //   path: '/registro',
+  //   component: RegistroPage
+  // }
 ];
 
 @NgModule({

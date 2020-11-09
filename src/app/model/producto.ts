@@ -1,5 +1,9 @@
 export class Producto{
   id:number;
-  nombre:string;
-  
+  producto:string;
+  artista:string;
+  tipo:string;
+  imagen:string;
+  stock:number;
+  precio:number;
 }

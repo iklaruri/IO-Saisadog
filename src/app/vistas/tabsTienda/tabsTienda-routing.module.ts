@@ -15,12 +15,12 @@ const routes: Routes = [
         loadChildren: () => import('../tabsTienda/tabDisco/tabDisco.module').then(m => m.TabDiscoPageModule)
       },
       {
-        path: 'tabMerch',
-        loadChildren: () => import('../tabsTienda/tabMerch/tabMerch.module').then(m => m.TabMerchPageModule)
-      },
-      {
         path: 'tabRopa',
         loadChildren: () => import('../tabsTienda/tabRopa/tabRopa.module').then(m => m.TabRopaPageModule)
+      },
+      {
+        path: 'tabOtros',
+        loadChildren: () => import('../tabsTienda/tabOtros/tabOtros.module').then(m => m.TabOtrosPageModule)
       },
       {
         path: 'tienda',

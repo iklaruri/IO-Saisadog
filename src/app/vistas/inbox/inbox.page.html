@@ -11,35 +11,35 @@
 <ion-content>
     <div class="md-cards">
         <div class="md-card-cont">
-            <h3>Visita nuestra tienda</h3>
-            <mbsc-scrollview [options]="scrollViewOptions" class="scrollInicio">
-                <mbsc-scrollview-item mbsc-card *ngFor="let t of tienda">
-                    <mbsc-card-content (click)="enviar(t.title)">
-                        <img class="md-img" [src]="t.image" draggable="false">
-                        <mbsc-card-title>{{t.title}}</mbsc-card-title>
-                        <mbsc-card-subtitle>{{t.dev}}</mbsc-card-subtitle>
+            <h3>Discos</h3>
+            <mbsc-scrollview *ngIf="discos" [options]="scrollViewOptions" class="scrollInicio">
+                <mbsc-scrollview-item mbsc-card *ngFor="let disco of discos">
+                    <mbsc-card-content>
+                        <img class="md-img" [src]="disco.ruta" draggable="false">
+                        <mbsc-card-title>{{disco.producto}}</mbsc-card-title>
+                        <mbsc-card-subtitle>{{disco.artista}}</mbsc-card-subtitle>
                     </mbsc-card-content>
                 </mbsc-scrollview-item>
             </mbsc-scrollview>
 
-            <h3>Visita nuestra tienda</h3>
-            <mbsc-scrollview [options]="scrollViewOptions" class="scrollInicio">
-                <mbsc-scrollview-item mbsc-card *ngFor="let t of tienda">
-                    <mbsc-card-content (click)="enviar(t.title)">
-                        <img class="md-img" [src]="t.image" draggable="false">
-                        <mbsc-card-title>{{t.title}}</mbsc-card-title>
-                        <mbsc-card-subtitle>{{t.dev}}</mbsc-card-subtitle>
+            <h3>Ropas</h3>
+            <mbsc-scrollview *ngIf="ropas" [options]="scrollViewOptions" class="scrollInicio">
+                <mbsc-scrollview-item mbsc-card *ngFor="let ropa of ropas">
+                    <mbsc-card-content>
+                        <img class="md-img" [src]="ropa.ruta" draggable="false">
+                        <mbsc-card-title>{{ropa.producto}}</mbsc-card-title>
+                        <mbsc-card-subtitle>{{ropa.artista}}</mbsc-card-subtitle>
                     </mbsc-card-content>
                 </mbsc-scrollview-item>
             </mbsc-scrollview>
 
-            <h3>Visita nuestra tienda</h3>
-            <mbsc-scrollview [options]="scrollViewOptions" class="scrollInicio">
-                <mbsc-scrollview-item mbsc-card *ngFor="let t of tienda">
-                    <mbsc-card-content (click)="enviar(t.title)">
-                        <img class="md-img" [src]="t.image" draggable="false">
-                        <mbsc-card-title>{{t.title}}</mbsc-card-title>
-                        <mbsc-card-subtitle>{{t.dev}}</mbsc-card-subtitle>
+            <h3>Otros</h3>
+            <mbsc-scrollview *ngIf="otros" [options]="scrollViewOptions" class="scrollInicio">
+                <mbsc-scrollview-item mbsc-card *ngFor="let otro of otros">
+                    <mbsc-card-content>
+                        <img class="md-img" [src]="otro.ruta" draggable="false">
+                        <mbsc-card-title>{{otro.producto}}</mbsc-card-title>
+                        <mbsc-card-subtitle>{{otro.artista}}</mbsc-card-subtitle>
                     </mbsc-card-content>
                 </mbsc-scrollview-item>
             </mbsc-scrollview>

@@ -27,10 +27,6 @@ const routes: Routes = [
     loadChildren: () => import('./vistas/generos/generos.module').then( m => m.GenerosPageModule)
   },
   {
-    path: 'productos',
-    loadChildren: () => import('./vistas/productos/productos.module').then( m => m.ProductosPageModule)
-  },
-  {
     path: 'cuenta',
     loadChildren: () => import('./vistas/cuenta/cuenta.module').then( m => m.CuentaPageModule)
   },

@@ -42,12 +42,7 @@ export class AppComponent implements OnInit{
       title: 'Cuenta',
       url: '/cuenta',
       icon: 'person'
-    },
-    // {
-    //   title: 'Carrito',
-    //   url: '/carrito',
-    //   icon: 'cart'
-    // }
+    }
   ];
 
   constructor() {

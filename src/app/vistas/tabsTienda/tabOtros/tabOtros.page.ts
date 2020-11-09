@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
+import { Producto } from 'src/app/model/producto';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { LoadingController } from '@ionic/angular';
-import { Producto } from 'src/app/model/producto';
 
 @Component({
-  selector: 'app-tabRopa',
-  templateUrl: 'tabRopa.page.html',
-  styleUrls: ['tabRopa.page.scss']
+  selector: 'app-tabOtros',
+  templateUrl: 'tabOtros.page.html',
+  styleUrls: ['tabOtros.page.scss']
 })
-export class TabRopaPage {
+export class TabOtrosPage {
 
-
-  ropas:Producto[]=[];
+  otros:Producto[]=[];
 
   constructor(private productoService:ProductoService,public loadingController:LoadingController) { }
 
@@ -25,9 +24,9 @@ export class TabRopaPage {
 
     await loading.present();
 
-    this.productoService.getProductosPorTipo(2).subscribe(data =>
+    this.productoService.getProductosPorTipo(3).subscribe(data =>
     {
-      this.ropas = data;
+      this.otros = data;
       loading.dismiss();
     })
 

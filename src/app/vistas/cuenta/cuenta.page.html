@@ -8,15 +8,25 @@
 </ion-header>
 
 <ion-content>
+  <ion-img class="imgIni" src="/assets/Logo Saisa Nuevo.png"></ion-img>
   <form (ngSubmit)="enviarFormulario()">
-    <ion-item>
-      <ion-input [(ngModel)]="usuarioForm.usuario" name="usuario" type="text" placeholder="Introduce el usuario:"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input [(ngModel)]="usuarioForm.password" name="pass" type="password" placeholder="Introduce la contraseña:"></ion-input>
-    </ion-item>
-    <ion-button expand="full" color="primary" type="submit">
+    <ion-label>Usuario</ion-label>
+    <ion-card>
+      <ion-item>
+        <ion-input [(ngModel)]="usuarioForm.usuario" name="usuario" type="text" placeholder="Introduce el usuario:"></ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-label>Contraseña</ion-label>
+    <ion-card>
+      <ion-item>
+        <ion-input [(ngModel)]="usuarioForm.password" name="pass" type="password" placeholder="Introduce la contraseña:"></ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-button class="buttonIni" expand="full" color="primary" shape="round" color="transparent" type="submit">
       Iniciar Sesión
+    </ion-button>
+    <ion-button class="buttonIni" expand="full" color="primary" shape="round" color="transparent" routerLink="/registro">
+      Registrate
     </ion-button>
   </form>
 </ion-content>

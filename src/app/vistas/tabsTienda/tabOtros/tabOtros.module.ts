@@ -6,9 +6,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 
-import { TabMerchPage } from './tabMerch.page';
-import { TabMerchPageRoutingModule } from './tabMerch-routing.module';
+
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+import { TabOtrosPageRoutingModule } from './tabOtros-routing.module';
+import { TabOtrosPage } from './tabOtros.page';
 
 
 
@@ -19,8 +20,8 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    TabMerchPageRoutingModule
+    TabOtrosPageRoutingModule
   ],
-  declarations: [TabMerchPage]
+  declarations: [TabOtrosPage]
 })
-export class TabMerchPageModule {}
+export class TabOtrosPageModule {}
