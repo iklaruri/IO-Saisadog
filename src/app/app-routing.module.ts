@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ArtistaProductosPage } from './vistas/artistas/productos/artistaProductos';
-
-
+import { GenerosProductosPage } from './vistas/generos/productos/generosProductos';
 
 
 const routes: Routes = [
@@ -33,6 +32,10 @@ const routes: Routes = [
   {
     path: 'generos',
     loadChildren: () => import('./vistas/generos/generos.module').then( m => m.GenerosPageModule)
+  },
+  {
+    path: 'generos/productos/:codGenero',
+    component: GenerosProductosPage
   },
   {
     path: 'cuenta',

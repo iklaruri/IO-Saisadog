@@ -8,15 +8,17 @@ import { IonicModule } from '@ionic/angular';
 import { GenerosPageRoutingModule } from './generos-routing.module';
 
 import { GenerosPage } from './generos.page';
+import { GenerosProductosPage } from './productos/generosProductos';
+
 
 @NgModule({
-  imports: [ 
-    MbscModule, 
+  imports: [
+    MbscModule,
     CommonModule,
     FormsModule,
     IonicModule,
     GenerosPageRoutingModule
   ],
-  declarations: [GenerosPage]
+  declarations: [GenerosPage,GenerosProductosPage]
 })
 export class GenerosPageModule {}

@@ -5,19 +5,19 @@ import { ProductoService } from 'src/app/servicios/producto.service';
 import { Producto } from 'src/app/model/producto';
 
 @Component({
-  selector: 'app-artistasProductos',
-  templateUrl: './artistaProductos.page.html',
-  styleUrls: ['./artistaProductos.page.scss'],
+  selector: 'app-generosProductos',
+  templateUrl: './generosProductos.page.html',
+  styleUrls: ['./generosProductos.page.scss'],
 })
 
-export class ArtistaProductosPage implements OnInit {
+export class GenerosProductosPage implements OnInit {
 
-  codArtista: string;
+  codGenero: string;
   productos:Producto[]=[];
 
   constructor(private activatedRoute:ActivatedRoute,private router:Router,private productoService:ProductoService,private loadingController:LoadingController){}
 
-  async obtenerProductos(codArtista)
+  async obtenerProductos(codGenero)
   {
     const loading = await this.loadingController.create(
     {
@@ -26,8 +26,9 @@ export class ArtistaProductosPage implements OnInit {
 
     await loading.present();
 
-      this.productoService.getProductosPorArtista(codArtista).subscribe(data => {
-        this.productos = data;      
+      this.productoService.getProductosPorGenero(codGenero).subscribe(data => {
+        this.productos = data;
+        console.log(this.productos);
         loading.dismiss();
       }, err => {
         console.log(err);
@@ -50,10 +51,10 @@ export class ArtistaProductosPage implements OnInit {
 
   ngOnInit(){
     this.activatedRoute.paramMap.subscribe(params => {
-    this.codArtista = params.get('codArtista');
+    this.codGenero = params.get('codGenero');
     });
 
-    this.obtenerProductos(this.codArtista);
+    this.obtenerProductos(this.codGenero);
   }
 
 

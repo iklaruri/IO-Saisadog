@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Genero } from 'src/app/model/genero';
 import { LoadingController } from '@ionic/angular';
 import { GeneroService } from 'src/app/servicios/genero.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-generos',
@@ -12,7 +13,7 @@ export class GenerosPage implements OnInit {
 
   generos:Genero[]=[];
 
-  constructor(private generoService:GeneroService,public loadingController:LoadingController) { }
+  constructor(private generoService:GeneroService,private router:Router,public loadingController:LoadingController) { }
 
   async obtenerGeneros()
   {
@@ -29,6 +30,11 @@ export class GenerosPage implements OnInit {
       loading.dismiss();
     })
 
+  }
+
+  mostrarProductos(codGenero)
+  {
+    this.router.navigateByUrl('generos/productos/' + codGenero);
   }
 
   ngOnInit() {

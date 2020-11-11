@@ -27,6 +27,12 @@ export class ProductoService {
     return this.httpClient.get<Producto[]>(URL_SERVICIO + "/producto/obtenerPorArtista/" + artista,httpOptions);
   }
 
+  getProductosPorGenero(genero:number): Observable<Producto[]> {
+    return this.httpClient.get<Producto[]>(URL_SERVICIO + "/producto/obtenerPorGenero/" + genero,httpOptions);
+  }
+
+
+
   getProductosNovedades(): Observable<Producto[]> {
     return this.httpClient.get<Producto[]>(URL_SERVICIO + "/producto/obtenerNovedades",httpOptions);
   }

@@ -10,7 +10,7 @@
 
 <ion-content>
   <ion-list *ngIf="generos">
-    <ion-item *ngFor="let genero of generos">
+    <ion-item *ngFor="let genero of generos" (click)="mostrarProductos(genero.id)">
       <ion-label>{{genero.nombre}}</ion-label>
     </ion-item>
   </ion-list>
