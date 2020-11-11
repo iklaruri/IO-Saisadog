@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArtistaService } from 'src/app/servicios/artista.service';
 import { Artista } from 'src/app/model/artista';
 import { LoadingController } from '@ionic/angular';
+import { Router} from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class ArtistasPage implements OnInit {
 
   artistas:Artista[]=[];
 
-  constructor(private artistaService:ArtistaService,public loadingController:LoadingController) { }
+  constructor(private artistaService:ArtistaService,private router:Router,public loadingController:LoadingController) { }
 
   async obtenerArtistas()
   {
@@ -32,7 +33,13 @@ export class ArtistasPage implements OnInit {
 
   }
 
-  ngOnInit() {
+  mostrarProductos(codArtista)
+  {
+    this.router.navigateByUrl('artistas/productos/' + codArtista);
+  }
+
+  ngOnInit()
+  {
     this.obtenerArtistas();
   }
 

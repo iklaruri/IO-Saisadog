@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ArtistaProductosPage } from './vistas/artistas/productos/artistaProductos';
+
+
+
 
 const routes: Routes = [
   {
@@ -23,6 +27,10 @@ const routes: Routes = [
     loadChildren: () => import('./vistas/artistas/artistas.module').then( m => m.ArtistasPageModule)
   },
   {
+    path: 'artistas/productos/:codArtista',
+    component: ArtistaProductosPage
+  },
+  {
     path: 'generos',
     loadChildren: () => import('./vistas/generos/generos.module').then( m => m.GenerosPageModule)
   },
@@ -33,7 +41,12 @@ const routes: Routes = [
   {
     path: 'carrito',
     loadChildren: () => import('./vistas/carrito/carrito.module').then( m => m.CarritoPageModule)
-  }
+  },
+  {
+    path: 'producto/:codProducto/:fecha',
+    loadChildren: () => import('./vistas/producto/producto.module').then( m => m.ProductoPageModule)
+  },
+
 ];
 @NgModule({
   imports: [

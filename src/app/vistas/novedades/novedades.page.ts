@@ -5,6 +5,7 @@ import { LoadingController } from '@ionic/angular';
 import { ArtistaService } from 'src/app/servicios/artista.service';
 import { Producto } from 'src/app/model/producto';
 import { Artista } from 'src/app/model/artista';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-novedades',
@@ -16,7 +17,7 @@ export class NovedadesPage implements OnInit {
   productos:Producto[]=[];
   artistas:Artista[]=[];
 
-  constructor(private productoService:ProductoService,private artistaService:ArtistaService,public loadingController:LoadingController) { }
+  constructor(private productoService:ProductoService,private artistaService:ArtistaService,private router:Router,public loadingController:LoadingController) { }
 
   scrollViewOptions: MbscScrollViewOptions = {
       layout: 'fixed',
@@ -45,6 +46,18 @@ export class NovedadesPage implements OnInit {
       loading.dismiss();
     })
 
+  }
+
+  mostrarProducto(codProducto)
+  {
+    let date_ob = new Date();
+    // current month
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    // current year
+    let year = date_ob.getFullYear();
+
+    let fecha = year + "-" + month;
+    this.router.navigateByUrl('/producto/' + codProducto + "/" + fecha);
   }
 
   ngOnInit() {

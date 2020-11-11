@@ -9,15 +9,20 @@ import { IonicModule } from '@ionic/angular';
 import { ArtistasPageRoutingModule } from './artistas-routing.module';
 
 import { ArtistasPage } from './artistas.page';
+import { ArtistaProductosPage } from './productos/artistaProductos';
+
+
+
+
 
 @NgModule({
-  imports: [ 
-    MbscModule, 
+  imports: [
+    MbscModule,
     CommonModule,
     FormsModule,
     IonicModule,
     ArtistasPageRoutingModule,
   ],
-  declarations: [ArtistasPage]
+  declarations: [ArtistasPage,ArtistaProductosPage]
 })
 export class ArtistasPageModule {}

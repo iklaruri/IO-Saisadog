@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot=start>
+      <ion-back-button defaultHref="inbox"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+      <ion-card-content id="infoProducto">
+        <ion-img [src]="producto.ruta"></ion-img>
+
+        <ion-card-content>
+          <ion-label id="producto" name="tipo">{{ producto.tipo }}</ion-label><br/>
+          <ion-label id="artista" name="artista">{{producto.artista}}</ion-label><br/>
+          <ion-label id="precioProducto" name="precio">{{producto.precio}} €</ion-label>
+        </ion-card-content>
+
+        <ion-card-content id="descripcionProducto">
+          <ion-label id="infolabel">Información del producto</ion-label><br/>
+          <ion-label id="descripcion" name="producto">{{producto.producto}}</ion-label>
+        </ion-card-content>    
+
+        <ion-card-content id="descripcionProducto">
+          <ion-label id="infolabel">Stock</ion-label><br/>
+          <ion-label id="descripcion" name="stock">{{producto.stock}}</ion-label>
+        </ion-card-content>
+
+        <ion-button id="btnComprar" (click)="anadirAlCarrito(producto)" color="primary" expand="full">
+          Añadir al carrito
+        </ion-button>
+      </ion-card-content>
+
+
+
+  <!-- <div class="md-cards">
+    <div class="md-card-cont">
+        <h3>Productos relacionados</h3>
+        <mbsc-scrollview [options]="scrollViewOptions" class="scrollInicio">
+            <mbsc-scrollview-item mbsc-card *ngFor="let t of tienda">
+                <mbsc-card-content (click)="enviar(t.title)">
+                    <img class="md-img" [src]="t.image" draggable="false">
+                    <mbsc-card-title>{{t.title}}</mbsc-card-title>
+                    <mbsc-card-subtitle>{{t.dev}}</mbsc-card-subtitle>
+                </mbsc-card-content>
+            </mbsc-scrollview-item>
+        </mbsc-scrollview>
+    </div> -->
+<!-- </div> -->
+
+
+</ion-content>

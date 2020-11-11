@@ -15,7 +15,7 @@
 
 <ion-content>
   <ion-list *ngIf="otros">
-    <ion-item *ngFor="let otro of otros">
+    <ion-item *ngFor="let otro of otros" (click)="mostrarProducto(otro.id)">
       <ion-img [src]="otro.ruta"></ion-img>
       <ion-label>{{otro.producto}}</ion-label>
     </ion-item>

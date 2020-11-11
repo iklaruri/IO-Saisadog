@@ -10,7 +10,7 @@
 
 <ion-content>
   <ion-list *ngIf="artistas">
-    <ion-item *ngFor="let artista of artistas">
+    <ion-item *ngFor="let artista of artistas" (click)="mostrarProductos(artista.id)">
       <ion-img [src]="artista.foto"></ion-img>
       <ion-label>{{artista.nombre}}</ion-label>
     </ion-item>

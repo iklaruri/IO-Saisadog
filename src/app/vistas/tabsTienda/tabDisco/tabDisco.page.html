@@ -19,7 +19,7 @@
           <h3>CD's</h3>
           <mbsc-scrollview *ngIf="cds" [options]="scrollViewOptions" class="scrollInicio">
               <mbsc-scrollview-item mbsc-card *ngFor="let cd of cds">
-                  <mbsc-card-content>
+                  <mbsc-card-content (click)="mostrarProducto(cd.id)">
                       <img class="md-img" [src]="cd.ruta" draggable="false">
                       <mbsc-card-title>{{cd.producto}}</mbsc-card-title>
                       <mbsc-card-subtitle>{{cd.artista}}</mbsc-card-subtitle>
@@ -30,7 +30,7 @@
           <h3>Album digitales</h3>
           <mbsc-scrollview *ngIf="albumDigitales" [options]="scrollViewOptions" class="scrollInicio">
               <mbsc-scrollview-item mbsc-card *ngFor="let albumDigital of albumDigitales">
-                  <mbsc-card-content>
+                  <mbsc-card-content (click)="mostrarProducto(albumDigital.id)">
                       <img class="md-img" [src]="albumDigital.ruta" draggable="false">
                       <mbsc-card-title>{{albumDigital.producto}}</mbsc-card-title>
                       <mbsc-card-subtitle>{{albumDigital.artista}}</mbsc-card-subtitle>
@@ -41,7 +41,7 @@
           <h3>Vinilos</h3>
           <mbsc-scrollview *ngIf="vinilos" [options]="scrollViewOptions" class="scrollInicio">
               <mbsc-scrollview-item mbsc-card *ngFor="let vinilo of vinilos">
-                  <mbsc-card-content>
+                  <mbsc-card-content (click)="mostrarProducto(vinilo.id)">
                       <img class="md-img" [src]="vinilo.ruta" draggable="false">
                       <mbsc-card-title>{{vinilo.producto}}</mbsc-card-title>
                       <mbsc-card-subtitle>{{vinilo.artista}}</mbsc-card-subtitle>

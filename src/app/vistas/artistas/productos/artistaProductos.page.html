@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot=start>
+      <ion-back-button defaultHref="artistas"></ion-back-button>
+    </ion-buttons>
+    <ion-input type="text" placeholder="Buscar"></ion-input>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="mbsc-padding">
+    <div class="mbsc-grid">
+        <div class="mbsc-row mbsc-no-padding" id="mdma2">
+            <div class="mbsc-col-12 mbsc-col-sm-6 mbsc-col-lg-4 mbsc-col-xl-3" id="mdma" *ngFor="let producto of productos">
+                <mbsc-card (click)="mostrarProducto(producto.id)">
+                    <img [src]="producto.ruta" draggable="false">
+                    <mbsc-card-content>
+                        <mbsc-card-title>{{producto.producto}}</mbsc-card-title>
+                        <p class="mbsc-txt-muted">{{producto.artista}}</p>
+                    </mbsc-card-content>
+                </mbsc-card>
+            </div>
+        </div>
+    </div>
+  </div>
+</ion-content>

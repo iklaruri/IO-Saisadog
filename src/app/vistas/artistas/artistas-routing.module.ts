@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ArtistasPage } from './artistas.page';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -13,8 +14,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ 
-    FormsModule,  
+  imports: [
+    FormsModule,
     MbscModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })

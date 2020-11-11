@@ -3,6 +3,7 @@ import { MbscScrollViewOptions } from '@mobiscroll/angular';
 import { Producto } from 'src/app/model/producto';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class InboxPage implements OnInit {
     ropas:Producto[]=[];
     otros:Producto[]=[];
 
-    constructor(private productoService:ProductoService,public loadingController:LoadingController) { }
+    constructor(private productoService:ProductoService,private router:Router,public loadingController:LoadingController) { }
 
     scrollViewOptions: MbscScrollViewOptions = {
         layout: 'fixed',
@@ -35,7 +36,7 @@ export class InboxPage implements OnInit {
       await loading.present();
 
       this.productoService.getProductos().subscribe(data =>
-      {        
+      {
         this.productos = data;
         loading.dismiss();
         this.productos.forEach(producto =>
@@ -58,6 +59,18 @@ export class InboxPage implements OnInit {
         });
       })
 
+    }
+
+    mostrarProducto(codProducto)
+    {
+      let date_ob = new Date();
+      // current month
+      let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+      // current year
+      let year = date_ob.getFullYear();
+
+      let fecha = year + "-" + month;
+      this.router.navigateByUrl('/producto/' + codProducto + "/" + fecha);
     }
 
     ngOnInit() {

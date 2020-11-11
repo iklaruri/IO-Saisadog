@@ -3,6 +3,7 @@ import { MbscScrollViewOptions } from '@mobiscroll/angular';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { LoadingController } from '@ionic/angular';
 import { Producto } from 'src/app/model/producto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabDisco',
@@ -15,7 +16,7 @@ export class TabDiscoPage {
   albumDigitales:Producto[]=[];
   vinilos:Producto[]=[];
 
-  constructor(private productoService:ProductoService,public loadingController:LoadingController) { }
+  constructor(private productoService:ProductoService,private router:Router,public loadingController:LoadingController) { }
 
   scrollViewOptions: MbscScrollViewOptions = {
       layout: 'fixed',
@@ -50,6 +51,18 @@ export class TabDiscoPage {
       loading.dismiss();
     })
 
+  }
+
+  mostrarProducto(codProducto)
+  {
+    let date_ob = new Date();
+    // current month
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    // current year
+    let year = date_ob.getFullYear();
+
+    let fecha = year + "-" + month;
+    this.router.navigateByUrl('/producto/' + codProducto + "/" + fecha);
   }
 
   ngOnInit() {

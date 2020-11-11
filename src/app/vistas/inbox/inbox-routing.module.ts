@@ -9,12 +9,13 @@ const routes: Routes = [
   {
     path: '',
     component: InboxPage
-  }
+  },
+  
 ];
 
 @NgModule({
-  imports: [ 
-    FormsModule,  
+  imports: [
+    FormsModule,
     MbscModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })

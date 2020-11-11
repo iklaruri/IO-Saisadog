@@ -1,0 +1,82 @@
+#btnLupa {
+    background: red;
+}
+
+#infoProducto {
+    width: 100%;
+    margin-top: 10px;
+    padding: 20px 10px;
+    margin-bottom: 10px;
+}
+
+#infoProducto ion-img {
+    min-width: 90%;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+#infoProducto > ion-card-content {
+    padding-top: 2px;
+}
+
+#infoProducto {
+    float: left;
+}
+
+#infoProducto > ion-card-content > ion-label#producto {
+    font-size: 1.1rem;
+}
+
+#infoProducto > ion-card-content > ion-label#artista {
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.445);
+}
+
+#infoProducto > ion-card-content > ion-label#precioProducto {
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.445);
+}
+
+#infoProducto #btnComprar {
+    margin-top: 10px;;
+}
+
+#descripcionProducto {
+    margin-top: -5px;
+}
+
+#descripcionProducto #infolabel {
+    color: black;
+    font-size: 1.1rem;
+}
+
+#descripcionProducto #descripcion {
+    color: rgba(0, 0, 0, 0.445);
+    font-size: 1rem;
+}
+
+
+.md-cards h3 {
+    padding: .5em;
+    margin: 0;
+    margin-bottom: -2px;
+    font-size: 1rem;
+}
+
+.md-img {
+    pointer-events: none;
+    border-radius: 8px;
+}
+
+.scrollInicio .mbsc-card-title {
+    font-size: 14px;
+    padding-top: 2px;
+    margin: 0;
+}
+
+.md-rank {
+    font-size: 12px;
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+}
