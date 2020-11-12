@@ -42,13 +42,9 @@ const routes: Routes = [
     loadChildren: () => import('./vistas/cuenta/cuenta.module').then( m => m.CuentaPageModule)
   },
   {
-    path: 'carrito',
-    loadChildren: () => import('./vistas/carrito/carrito.module').then( m => m.CarritoPageModule)
-  },
-  {
     path: 'producto/:codProducto/:fecha',
     loadChildren: () => import('./vistas/producto/producto.module').then( m => m.ProductoPageModule)
-  },
+  }  
 
 ];
 @NgModule({

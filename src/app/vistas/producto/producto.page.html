@@ -20,14 +20,21 @@
         <ion-card-content id="descripcionProducto">
           <ion-label id="infolabel">Información del producto</ion-label><br/>
           <ion-label id="descripcion" name="producto">{{producto.producto}}</ion-label>
-        </ion-card-content>    
+        </ion-card-content>
 
-        <ion-card-content id="descripcionProducto">
+        <ion-card-content *ngIf="tallas" id="descripcionProducto">
+          <ion-label id="infolabel">Talla</ion-label><br/>
+          <ion-select id="descripcion">
+            <ion-select-option [value]="talla.id" *ngFor="let talla of tallas">{{talla.nombre}} (Stock = {{talla.stock}})</ion-select-option>
+          </ion-select>
+        </ion-card-content>
+
+        <ion-card-content *ngIf="!tallas" id="descripcionProducto">
           <ion-label id="infolabel">Stock</ion-label><br/>
           <ion-label id="descripcion" name="stock">{{producto.stock}}</ion-label>
         </ion-card-content>
 
-        <ion-button id="btnComprar" (click)="anadirAlCarrito(producto)" color="primary" expand="full">
+        <ion-button id="btnComprar" (click)="anadirAlCarrito(producto,talla)" color="primary" expand="full">
           Añadir al carrito
         </ion-button>
       </ion-card-content>

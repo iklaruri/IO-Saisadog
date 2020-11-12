@@ -1,3 +1,5 @@
+import { Talla } from './talla';
+
 export class Producto{
   id:number;
   producto:string;
@@ -6,4 +8,5 @@ export class Producto{
   imagen:string;
   stock:number;
   precio:number;
+  talla:Talla;
 }

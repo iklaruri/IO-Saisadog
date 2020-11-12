@@ -1,21 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Talla } from '../model/talla';
 import { URL_SERVICIO, httpOptions } from '../config/config';
-import { Usuario } from '../model/usuario';
-
 
 @Injectable({
   providedIn: 'root'
 })
-
-export class UsuarioService {
+export class TallaService {
 
   constructor(private httpClient: HttpClient) { }
 
-  login(usuario:Usuario): Observable<any>
+  getTallas(codProducto):Observable<Talla[]>
   {
-    return this.httpClient.post(URL_SERVICIO + "usuario/login", usuario,httpOptions);
+    return this.httpClient.get<Talla[]>(URL_SERVICIO + "/talla/obtener/" + codProducto,httpOptions);
   }
-
 }
