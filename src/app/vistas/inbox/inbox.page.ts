@@ -41,7 +41,7 @@ export class InboxPage implements OnInit {
         loading.dismiss();
         this.productos.forEach(producto =>
         {
-          if(producto.tipo=="CD" || producto.tipo=="Album Digital")
+          if(producto.tipo=="CD" || producto.tipo=="Album Digital" || producto.tipo=="Vinilo")
           {
             this.discos.push(producto);
           }
