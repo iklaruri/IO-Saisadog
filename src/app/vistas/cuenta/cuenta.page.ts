@@ -35,6 +35,7 @@ export class CuentaPage implements OnInit {
       if(this.usuario != null)
       {
         localStorage.setItem('usuario',JSON.stringify(this.usuario.usuario));
+        this.router.navigateByUrl('info');
       }
 
       loading.dismiss();

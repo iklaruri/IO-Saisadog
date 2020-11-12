@@ -24,7 +24,7 @@ const routes: Routes = [
         loadChildren: () => import('../tabsCuenta/tabPedidos/tabPedidos.module').then(m => m.TabPedidosPageModule)
       },
       {
-        path: 'cuenta/info',
+        path: 'info',
         redirectTo: '/tabsCuenta/tabPerfil',
         pathMatch: 'full'
       }

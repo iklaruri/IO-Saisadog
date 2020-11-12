@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ArtistaProductosPage } from './vistas/artistas/productos/artistaProductos';
 import { GenerosProductosPage } from './vistas/generos/productos/generosProductos';
+import { RegistroPage } from './vistas/cuenta/registro/registro.page';
 
 
 const routes: Routes = [
@@ -42,8 +43,12 @@ const routes: Routes = [
     loadChildren: () => import('./vistas/cuenta/cuenta.module').then( m => m.CuentaPageModule)
   },
   {
-    path: 'cuenta/info',
+    path: 'info',
     loadChildren: () => import('./vistas/tabsCuenta/tabsCuenta.module').then( m => m.TabsCuentaPageModule)
+  },
+  {
+    path: 'registro',
+    component: RegistroPage
   },
   {
     path: 'producto/:codProducto/:fecha',

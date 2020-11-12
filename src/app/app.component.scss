@@ -8,7 +8,12 @@ ion-img
     width: 200px;
     margin: 10px auto;
   }
-  
+
   ion-menu.md ion-list#grupo1-list {
     border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
   }
+
+hr{
+  min-height: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+}

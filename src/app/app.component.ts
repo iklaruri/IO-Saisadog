@@ -37,11 +37,17 @@ export class AppComponent implements OnInit{
     }
   ];
 
+
   public grupo2 = [
     {
       title: 'Cuenta',
       url: '/cuenta',
       icon: 'person'
+    },
+    {
+      title: 'Info',
+      url: '/info/tabsCuenta/tabPerfil',
+      icon: 'information'
     }
   ];
 

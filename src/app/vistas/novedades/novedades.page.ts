@@ -60,6 +60,11 @@ export class NovedadesPage implements OnInit {
     this.router.navigateByUrl('/producto/' + codProducto + "/" + fecha);
   }
 
+  mostrarProductos(codArtista)
+  {
+    this.router.navigateByUrl('/artistas/productos/' + codArtista);
+  }
+
   ngOnInit() {
     this.obtenerNovedades();
   }

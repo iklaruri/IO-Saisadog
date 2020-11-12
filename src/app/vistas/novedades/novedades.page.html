@@ -25,7 +25,7 @@
           <h3>Nuevos artistas</h3>
           <mbsc-scrollview *ngIf="artistas" [options]="scrollViewOptions" class="scrollInicio">
               <mbsc-scrollview-item mbsc-card *ngFor="let artista of artistas">
-                  <mbsc-card-content>
+                  <mbsc-card-content (click)="mostrarProductos(artista.id)">
                       <img class="md-img" [src]="artista.foto" draggable="false">
                       <mbsc-card-title>{{artista.artista}}</mbsc-card-title>
                       <mbsc-card-subtitle>{{artista.fechafundacion}}</mbsc-card-subtitle>
