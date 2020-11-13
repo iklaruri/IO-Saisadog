@@ -46,7 +46,7 @@ export class AppComponent implements OnInit{
     },
     {
       title: 'Cuenta',
-      url: '/cuenta/tabsCuenta/tabPerfil',
+      url: '/cuenta/tabsCuenta/tabCarrito',
       icon: 'person'
     }
   ];
@@ -62,7 +62,15 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     const path = window.location.pathname.split('/')[1];
     if (path !== undefined) {
+      // console.log(path);
+      // if(path === "cuenta" || path === "login")
+      // {
+      //   this.selectedIndex = this.grupo2.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+      // }else{
+      //   this.selectedIndex = this.grupo1.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+      // }
       this.selectedIndex = this.grupo1.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+
     }
   }
 }

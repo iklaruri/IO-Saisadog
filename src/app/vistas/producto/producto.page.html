@@ -24,8 +24,8 @@
 
         <ion-card-content *ngIf="tallas.length > 0" id="descripcionProducto">
           <ion-label id="infolabel">Talla</ion-label><br/>
-          <ion-select id="descripcion">
-            <ion-select-option *ngFor="let talla of tallas" [value]="producto.talla">{{talla.nombre}} (Stock = {{talla.stock}})</ion-select-option>
+          <ion-select id="descripcion" name="talla">
+            <ion-select-option *ngFor="let talla of tallas" [value]="talla">{{talla.nombre}} (Stock = {{talla.stock}})</ion-select-option>
           </ion-select>
         </ion-card-content>
 
@@ -38,23 +38,5 @@
           Añadir al carrito
         </ion-button>
       </ion-card-content>
-
-
-
-  <!-- <div class="md-cards">
-    <div class="md-card-cont">
-        <h3>Productos relacionados</h3>
-        <mbsc-scrollview [options]="scrollViewOptions" class="scrollInicio">
-            <mbsc-scrollview-item mbsc-card *ngFor="let t of tienda">
-                <mbsc-card-content (click)="enviar(t.title)">
-                    <img class="md-img" [src]="t.image" draggable="false">
-                    <mbsc-card-title>{{t.title}}</mbsc-card-title>
-                    <mbsc-card-subtitle>{{t.dev}}</mbsc-card-subtitle>
-                </mbsc-card-content>
-            </mbsc-scrollview-item>
-        </mbsc-scrollview>
-    </div> -->
-<!-- </div> -->
-
-
+      
 </ion-content>

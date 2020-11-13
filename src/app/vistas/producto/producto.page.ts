@@ -19,6 +19,7 @@ export class ProductoPage implements OnInit {
   codProducto: string;
   fecha: string;
   producto = new Producto();
+  talla = new Talla();
   productos:Producto[]=[];
   tallas:Talla[]=[];
 
@@ -71,16 +72,15 @@ export class ProductoPage implements OnInit {
 
   anadirAlCarrito()
   {
-    //console.log(talla);
+    console.log(this.talla);
     if(this.productos.length === 0)
     {
-      // if(this.producto.tipo === "Ropa")
-      // {
-      //   producto.talla = talla;
-      // }
+      if(this.producto.tipo = "Ropa")
+      {
+        this.producto.talla = this.talla;
+      }
 
       this.productos.push(this.producto);
-
       localStorage.setItem('carrito',JSON.stringify(this.productos));
 
       Swal.fire({
@@ -94,6 +94,10 @@ export class ProductoPage implements OnInit {
 
       this.productos.forEach(productoCarrito => {
         if(productoCarrito.id === this.producto.id){
+          if(productoCarrito.talla.id === this.producto.talla.id)
+          {
+            estaEnCarrito=true;
+          }
           estaEnCarrito=true;
           exit;
         }
@@ -109,6 +113,10 @@ export class ProductoPage implements OnInit {
           });
         }else
         {
+          if(this.producto.tipo = "Ropa")
+          {
+            this.producto.talla = this.talla;
+          }
 
           this.productos.push(this.producto);
           localStorage.setItem('carrito',JSON.stringify(this.productos));

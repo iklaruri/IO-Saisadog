@@ -11,13 +11,13 @@ const routes: Routes = [
     component: TabsCuentaPage,
     children: [
       {
-        path: 'tabPerfil',
-        loadChildren: () => import('../tabsCuenta/tabPerfil/tabPerfil.module').then(m => m.TabPerfilPageModule)
-      },
-      {
         path: 'tabCarrito',
         loadChildren: () => import('../tabsCuenta/tabCarrito/tabCarrito.module').then(m => m.TabCarritoPageModule)
       },
+      {
+        path: 'tabPerfil',
+        loadChildren: () => import('../tabsCuenta/tabPerfil/tabPerfil.module').then(m => m.TabPerfilPageModule)
+      },      
       {
         path: 'tabPedidos',
         loadChildren: () => import('../tabsCuenta/tabPedidos/tabPedidos.module').then(m => m.TabPedidosPageModule)
