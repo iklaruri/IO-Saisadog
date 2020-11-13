@@ -1,4 +1,4 @@
-import { MbscModule } from '@mobiscroll/angular';
+
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,8 +10,7 @@ import { TabsTiendaPageRoutingModule } from './tabsTienda-routing.module';
 
 
 @NgModule({
-  imports: [
-    MbscModule,
+  imports: [    
     IonicModule,
     CommonModule,
     FormsModule,

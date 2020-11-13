@@ -1,5 +1,4 @@
 import { FormsModule } from '@angular/forms';
-import { MbscModule } from '@mobiscroll/angular';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsCuentaPage } from './tabsCuenta.page';
@@ -24,8 +23,8 @@ const routes: Routes = [
         loadChildren: () => import('../tabsCuenta/tabPedidos/tabPedidos.module').then(m => m.TabPedidosPageModule)
       },
       {
-        path: 'info',
-        redirectTo: '/tabsCuenta/tabPerfil',
+        path: 'cuenta',
+        redirectTo: '/tabsCuenta/tabCarrito',
         pathMatch: 'full'
       }
     ]
@@ -35,7 +34,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     FormsModule,
-    MbscModule, RouterModule.forChild(routes)],
+    RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class TabsCuentaPageRoutingModule {}

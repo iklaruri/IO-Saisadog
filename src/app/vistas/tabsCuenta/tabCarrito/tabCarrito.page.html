@@ -3,9 +3,35 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-title>carrito</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-label>Carrito</ion-label>
+    <div>
+      <div class="contendor" *ngFor="let carritoProducto of carrito.productos; let i = index">
+        <img [src]="carritoProducto.ruta">
+        <h1>{{carritoProducto.producto}}</h1>
+        <p>{{carritoProducto.artista}}</p>
+        <p>{{carritoProducto.precio}}</p>
+        <ion-input class="cantidad" type="number" value="1" placeholder="Cant."></ion-input>
+        <ion-button fill="clear" class="btnEliminar" expand="full" color="danger" (click)="eliminarProducto(i)">
+          <ion-icon slot="start" name="trash"></ion-icon>
+        </ion-button>
+        <hr class="fincontendor"/>
+      </div>
+      <ion-card>
+        <ion-item>
+          <ion-label>Precio total:</ion-label>
+          <ion-label>XXX</ion-label>
+        </ion-item>
+        <ion-button class="buttonDireccion"  fill="clear" type="submit">Obtener Direccion</ion-button>
+        <ion-item>
+          <ion-input  name="direccion" type="text" placeholder="Direccion actual"></ion-input>
+        </ion-item>
+        <ion-button class="buttonIni" expand="full" color="primary" shape="round" color="transparent" type="submit">
+          Realizar Compra
+        </ion-button>
+      </ion-card>
+    </div>
 </ion-content>

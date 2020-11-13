@@ -1,4 +1,4 @@
-import { MbscModule } from '@mobiscroll/angular';
+
 import { IonicModule } from '@ionic/angular';
 
 import { NgModule } from '@angular/core';
@@ -14,8 +14,7 @@ import { TabOtrosPage } from './tabOtros.page';
 
 
 @NgModule({
-  imports: [
-    MbscModule,
+  imports: [    
     IonicModule,
     CommonModule,
     FormsModule,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MbscScrollViewOptions } from '@mobiscroll/angular';
+
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { LoadingController } from '@ionic/angular';
 import { Producto } from 'src/app/model/producto';
@@ -18,12 +18,7 @@ export class TabDiscoPage {
 
   constructor(private productoService:ProductoService,private router:Router,public loadingController:LoadingController) { }
 
-  scrollViewOptions: MbscScrollViewOptions = {
-      layout: 'fixed',
-      itemWidth: 100,
-      snap: false
-  };
-
+  
   async obtenerProductos()
   {
     const loading = await this.loadingController.create(

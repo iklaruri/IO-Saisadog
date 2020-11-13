@@ -1,4 +1,3 @@
-import { MbscModule } from '@mobiscroll/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +16,6 @@ import { ArtistaProductosPage } from './productos/artistaProductos';
 
 @NgModule({
   imports: [
-    MbscModule,
     CommonModule,
     FormsModule,
     IonicModule,

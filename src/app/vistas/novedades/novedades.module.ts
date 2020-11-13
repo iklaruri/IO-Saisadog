@@ -1,4 +1,3 @@
-import { MbscModule } from '@mobiscroll/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,8 +9,7 @@ import { NovedadesPageRoutingModule } from './novedades-routing.module';
 import { NovedadesPage } from './novedades.page';
 
 @NgModule({
-  imports: [ 
-    MbscModule, 
+  imports: [      
     CommonModule,
     FormsModule,
     IonicModule,

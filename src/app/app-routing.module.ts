@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ArtistaProductosPage } from './vistas/artistas/productos/artistaProductos';
 import { GenerosProductosPage } from './vistas/generos/productos/generosProductos';
-import { RegistroPage } from './vistas/cuenta/registro/registro.page';
+import { RegistroPage } from './vistas/login/registro/registro.page';
+
 
 
 const routes: Routes = [
@@ -39,11 +40,11 @@ const routes: Routes = [
     component: GenerosProductosPage
   },
   {
-    path: 'cuenta',
-    loadChildren: () => import('./vistas/cuenta/cuenta.module').then( m => m.CuentaPageModule)
+    path: 'login',
+    loadChildren: () => import('./vistas/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'info',
+    path: 'cuenta',
     loadChildren: () => import('./vistas/tabsCuenta/tabsCuenta.module').then( m => m.TabsCuentaPageModule)
   },
   {

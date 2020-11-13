@@ -1,4 +1,3 @@
-import { MbscModule } from '@mobiscroll/angular';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,8 +8,7 @@ import { TabPerfilPage } from './tabPerfil.page';
 import { TabPerfilPageRoutingModule } from './tabPerfil-routing.module';
 
 @NgModule({
-  imports: [
-    MbscModule,
+  imports: [    
     IonicModule,
     CommonModule,
     FormsModule,

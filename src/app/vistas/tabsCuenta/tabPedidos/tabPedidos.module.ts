@@ -1,4 +1,4 @@
-import { MbscModule } from '@mobiscroll/angular';
+
 import { IonicModule } from '@ionic/angular';
 
 import { NgModule } from '@angular/core';
@@ -15,8 +15,7 @@ import { TabPedidosPageRoutingModule } from './tabPedidos-routing.module';
 
 
 @NgModule({
-  imports: [
-    MbscModule,
+  imports: [  
     IonicModule,
     CommonModule,
     FormsModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MbscScrollViewOptions } from '@mobiscroll/angular';
+
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { LoadingController } from '@ionic/angular';
 import { ArtistaService } from 'src/app/servicios/artista.service';
@@ -19,12 +19,7 @@ export class NovedadesPage implements OnInit {
 
   constructor(private productoService:ProductoService,private artistaService:ArtistaService,private router:Router,public loadingController:LoadingController) { }
 
-  scrollViewOptions: MbscScrollViewOptions = {
-      layout: 'fixed',
-      itemWidth: 100,
-      snap: false
-  };
-
+  
   async obtenerNovedades()
   {
     const loading = await this.loadingController.create(

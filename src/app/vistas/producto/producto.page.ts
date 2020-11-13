@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { Producto } from 'src/app/model/producto';
-import { MbscScrollViewOptions } from '@mobiscroll/angular';
+
 import Swal from 'sweetalert2';
 import { exit } from 'process';
 import { Talla } from 'src/app/model/talla';
@@ -18,7 +18,7 @@ export class ProductoPage implements OnInit {
 
   codProducto: string;
   fecha: string;
-  producto = new Producto();  
+  producto = new Producto();
   productos:Producto[]=[];
   tallas:Talla[]=[];
 
@@ -35,11 +35,6 @@ export class ProductoPage implements OnInit {
 
   }
 
-  scrollViewOptions: MbscScrollViewOptions = {
-        layout: 'fixed',
-        itemWidth: 100,
-        snap: false
-    };
 
 
   async obtenerProducto(codProducto,fecha)
@@ -74,20 +69,20 @@ export class ProductoPage implements OnInit {
 
   }
 
-  anadirAlCarrito(producto:Producto,talla:Talla)
+  anadirAlCarrito()
   {
-    console.log(talla);
+    //console.log(talla);
     if(this.productos.length === 0)
     {
-      if(producto.tipo === "Ropa")
-      {
-        producto.talla = talla;
-      }
+      // if(this.producto.tipo === "Ropa")
+      // {
+      //   producto.talla = talla;
+      // }
 
-      this.productos.push(producto);
+      this.productos.push(this.producto);
 
       localStorage.setItem('carrito',JSON.stringify(this.productos));
-      // console.log("CARRITO NUEVO" + producto);
+
       Swal.fire({
         allowOutsideClick:false,
         icon:'success',
@@ -98,7 +93,7 @@ export class ProductoPage implements OnInit {
       let estaEnCarrito = false;
 
       this.productos.forEach(productoCarrito => {
-        if(productoCarrito.id === producto.id){
+        if(productoCarrito.id === this.producto.id){
           estaEnCarrito=true;
           exit;
         }
@@ -114,15 +109,10 @@ export class ProductoPage implements OnInit {
           });
         }else
         {
-          if(producto.tipo === "Ropa")
-          {
-            console.log(talla);
-            producto.talla = talla;
-          }
 
-          this.productos.push(producto);
+          this.productos.push(this.producto);
           localStorage.setItem('carrito',JSON.stringify(this.productos));
-        //  console.log("CARRITO ACTUALIZADO" + producto);
+
           Swal.fire({
             allowOutsideClick:false,
             icon:'success',

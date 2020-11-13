@@ -18,4 +18,9 @@ export class UsuarioService {
     return this.httpClient.post(URL_SERVICIO + "/usuario/login", usuario,httpOptions);
   }
 
+  registrar(usuario:Usuario):Observable<any>
+  {
+    return this.httpClient.post(URL_SERVICIO + "/usuario/anadir", usuario,httpOptions);
+  }
+
 }

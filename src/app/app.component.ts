@@ -40,14 +40,14 @@ export class AppComponent implements OnInit{
 
   public grupo2 = [
     {
-      title: 'Cuenta',
-      url: '/cuenta',
-      icon: 'person'
+      title: 'Login/Logout',
+      url: '/login',
+      icon: 'home'
     },
     {
-      title: 'Info',
-      url: '/info/tabsCuenta/tabPerfil',
-      icon: 'information'
+      title: 'Cuenta',
+      url: '/cuenta/tabsCuenta/tabPerfil',
+      icon: 'person'
     }
   ];
 

@@ -6,11 +6,11 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 
 @Component({
-  selector: 'app-cuenta',
-  templateUrl: './cuenta.page.html',
-  styleUrls: ['./cuenta.page.scss'],
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class CuentaPage implements OnInit {
+export class LoginPage implements OnInit {
 
   usuarioForm = {'id':-1,'usuario':'', 'password':'','direccion':'','email':'','tlf':'','foto':''};
   usuario = new Usuario();

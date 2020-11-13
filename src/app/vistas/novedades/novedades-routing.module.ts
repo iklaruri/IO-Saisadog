@@ -1,5 +1,4 @@
 import { FormsModule } from '@angular/forms';
-import { MbscModule } from '@mobiscroll/angular';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -13,9 +12,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ 
-    FormsModule,  
-    MbscModule, RouterModule.forChild(routes)],
+  imports: [
+    FormsModule,
+    RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class NovedadesPageRoutingModule {}

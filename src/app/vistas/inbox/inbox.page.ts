@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MbscScrollViewOptions } from '@mobiscroll/angular';
 import { Producto } from 'src/app/model/producto';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { LoadingController } from '@ionic/angular';
@@ -19,12 +18,6 @@ export class InboxPage implements OnInit {
     otros:Producto[]=[];
 
     constructor(private productoService:ProductoService,private router:Router,public loadingController:LoadingController) { }
-
-    scrollViewOptions: MbscScrollViewOptions = {
-        layout: 'fixed',
-        itemWidth: 100,
-        snap: false
-    };
 
     async obtenerProductos()
     {
