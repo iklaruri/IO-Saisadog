@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { UsuarioService } from './servicios/usuario.service';
+import { VentaService } from './servicios/venta.service';
 
 
 
@@ -25,7 +26,8 @@ import { UsuarioService } from './servicios/usuario.service';
   providers: [
     StatusBar,
     SplashScreen,
-    UsuarioService,    
+    UsuarioService,
+    VentaService,   
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

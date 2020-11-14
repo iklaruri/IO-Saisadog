@@ -11,6 +11,15 @@ ion-img.imgIni{
 ion-button.buttonIni {
     width: 140px;
     margin:auto;
+    margin-bottom: 10px;
+    border-radius: 55px;
+    color: white;
+    background-color: rgb(0, 148, 57);
+}
+
+ion-button.buttonReg {
+    width: 140px;
+    margin:auto;
     border-radius: 55px;
     color: white;
     background-color: rgb(0, 148, 57);

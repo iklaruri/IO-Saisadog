@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LoginPage } from './login.page';
 import { LoginPageRoutingModule } from './login-routing.module';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 
 
@@ -16,6 +17,9 @@ import { LoginPageRoutingModule } from './login-routing.module';
     FormsModule,
     IonicModule,
     LoginPageRoutingModule
+  ],
+  providers:[
+    UsuarioService
   ],
   declarations: [LoginPage]
 })

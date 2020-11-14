@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ArtistaProductosPage } from './vistas/artistas/productos/artistaProductos';
 import { GenerosProductosPage } from './vistas/generos/productos/generosProductos';
 import { RegistroPage } from './vistas/login/registro/registro.page';
+import { AuthGuard } from './guards/auth.guard';
 
 
 
@@ -45,6 +46,7 @@ const routes: Routes = [
   },
   {
     path: 'cuenta',
+    canActivate:[AuthGuard],
     loadChildren: () => import('./vistas/tabsCuenta/tabsCuenta.module').then( m => m.TabsCuentaPageModule)
   },
   {

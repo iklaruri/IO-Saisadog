@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -14,8 +15,19 @@ export class LoginPage implements OnInit {
 
   usuarioForm = {'id':-1,'usuario':'', 'password':'','direccion':'','email':'','tlf':'','foto':''};
   usuario = new Usuario();
+  tokenUsuario;
 
-  constructor(private loadingController: LoadingController, private usuarioService: UsuarioService, private router: Router) { }
+
+  constructor(private loadingController: LoadingController, private usuarioService: UsuarioService, private router: Router) {
+      if(JSON.parse(localStorage.getItem('usuario')))
+      {
+        this.tokenUsuario = JSON.parse(localStorage.getItem('usuario'));
+      }else
+      {
+        this.tokenUsuario = null;
+      }
+
+  }
 
   ngOnInit() {
 
@@ -34,8 +46,18 @@ export class LoginPage implements OnInit {
 
       if(this.usuario != null)
       {
-        localStorage.setItem('usuario',JSON.stringify(this.usuario.usuario));
-        this.router.navigateByUrl('info');
+        localStorage.setItem('usuario',JSON.stringify(this.usuario.id));
+        this.expiraSesion();
+
+        this.router.navigateByUrl('');
+      }else
+      {
+
+        Swal.fire({
+          allowOutsideClick:false,
+          icon:'error',
+          text:'Error al autenticar'
+        });
       }
 
       loading.dismiss();
@@ -48,9 +70,32 @@ export class LoginPage implements OnInit {
 
   }
 
+
   enviarFormulario()
   {
     this.login();
   }
+
+  desconectarse()
+  {
+    localStorage.clear();
+    this.router.navigateByUrl('');
+  }
+
+  expiraSesion()
+  {
+    let tiempo = 1;
+    let inicioSesion = new Date().getTime();
+    let expira = localStorage.getItem('expira');
+    if (expira == null) {
+        localStorage.setItem('expira', JSON.stringify(inicioSesion));
+    } else {
+        if(inicioSesion - Number(expira) > tiempo*60*60*1000) {
+            localStorage.clear();
+        }
+    }
+  }
+
+
 
 }

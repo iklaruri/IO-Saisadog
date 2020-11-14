@@ -9,25 +9,29 @@
 
 <ion-content>
   <ion-img class="imgIni" src="/assets/Logo Saisa Nuevo.png"></ion-img>
-  <form (ngSubmit)="enviarFormulario()">
+  <form *ngIf="!tokenUsuario" (ngSubmit)="enviarFormulario()" >
     <ion-label>Usuario</ion-label>
     <ion-card>
       <ion-item>
-        <ion-input [(ngModel)]="usuarioForm.usuario" name="usuario" type="text" placeholder="Introduce el usuario:"></ion-input>
+        <ion-input [(ngModel)]="usuarioForm.usuario" name="usuario" type="text" placeholder="Introduce el usuario:" required></ion-input>
       </ion-item>
     </ion-card>
     <ion-label>Contraseña</ion-label>
     <ion-card>
       <ion-item>
-        <ion-input [(ngModel)]="usuarioForm.password" name="pass" type="password" placeholder="Introduce la contraseña:"></ion-input>
+        <ion-input [(ngModel)]="usuarioForm.password" name="pass" type="password" placeholder="Introduce la contraseña:" required></ion-input>
       </ion-item>
     </ion-card>
     <ion-button class="buttonIni" expand="full" color="primary" shape="round" color="transparent" type="submit">
       Iniciar Sesión
     </ion-button>
-    <ion-button class="buttonIni" expand="full" color="primary" shape="round" color="transparent" routerLink="/registro">
-      Registrate
+    <ion-button class="buttonReg" expand="full" color="primary" shape="round" color="transparent" routerLink="/registro">
+      Registrarse
     </ion-button>
   </form>
-  
+
+  <ion-button *ngIf="tokenUsuario" class="buttonIni" expand="full" color="primary" shape="round" color="transparent" (click)="desconectarse()">
+    Desconectarse
+  </ion-button>
+
 </ion-content>

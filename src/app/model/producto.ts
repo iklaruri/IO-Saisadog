@@ -8,6 +8,6 @@ export class Producto{
   imagen:string;
   stock:number;
   precio:number;
-  cantidad:number=1;
+  cantidad:number;
   talla:Talla;
 }

@@ -34,4 +34,12 @@ export class ProductoService {
   getProductosNovedades(): Observable<Producto[]> {
     return this.httpClient.get<Producto[]>(URL_SERVICIO + "/producto/obtenerNovedades",httpOptions);
   }
+
+  actualizarStock(producto:any):Observable<any> {
+    return this.httpClient.put(URL_SERVICIO + "/producto/actualizarStock",producto,httpOptions);
+  }
+
+  actualizarRopaStock(producto:any):Observable<any> {
+    return this.httpClient.put(URL_SERVICIO + "/talla/actualizarStock",producto,httpOptions);
+  }
 }

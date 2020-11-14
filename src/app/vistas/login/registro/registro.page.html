@@ -8,35 +8,40 @@
 </ion-header>
 
 <ion-content>
-  <div>
-    <form>
-    <ion-label>Correo Electronico</ion-label>
+    <form (ngSubmit)="enviarFormRegistro()">
+    <ion-label>Email</ion-label>
       <ion-card>
         <ion-item>
-          <ion-input></ion-input>
+          <ion-input [(ngModel)]="registroForm.email"  name="email" type="email" placeholder="Introduce el email:" required></ion-input>
         </ion-item>
       </ion-card>
       <ion-label>Usuario</ion-label>
       <ion-card>
         <ion-item>
-          <ion-input></ion-input>
+          <ion-input [(ngModel)]="registroForm.usuario"  name="usuario" type="text" placeholder="Introduce el usuario:" required></ion-input>
         </ion-item>
       </ion-card>
       <ion-label>Contraseña</ion-label>
       <ion-card>
         <ion-item>
-          <ion-input></ion-input>
+          <ion-input [(ngModel)]="registroForm.password" name="password" type="password" placeholder="Introduce la contraseña:" required></ion-input>
         </ion-item>
       </ion-card>
-      <ion-label>Direccion</ion-label>
+      <ion-label>Dirección</ion-label>
       <ion-card>
         <ion-item>
-          <ion-input></ion-input>
+          <ion-input [(ngModel)]="registroForm.direccion" name="direccion" type="text" placeholder="Introduce la direccion:" required></ion-input>
+        </ion-item>
+      </ion-card>
+      <ion-label>Teléfono</ion-label>
+      <ion-card>
+        <ion-item>
+          <ion-input [(ngModel)]="registroForm.tlf" name="tlf" type="tel" placeholder="Introduce el teléfono:" required></ion-input>
         </ion-item>
       </ion-card>
       <ion-button class="buttonIni" expand="full" color="primary" shape="round" color="transparent" type="submit">
         Registrarse
       </ion-button>
     </form>
-  </div>
+
 </ion-content>
