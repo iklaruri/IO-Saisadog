@@ -8,35 +8,35 @@
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="enviarFormulario()">
+  <form ngNativeValidate [formGroup]="registroForm" (ngSubmit)="enviarFormulario()">
       <ion-label>Email</ion-label>
         <ion-card>
           <ion-item>
-            <ion-input [(ngModel)]="registroForm.email"  name="email" type="email" placeholder="Introduce el email:" required></ion-input>
+            <ion-input formControlName="email"  name="email" type="email" required placeholder="Introduce el email:" ></ion-input>
           </ion-item>
         </ion-card>
         <ion-label>Usuario</ion-label>
         <ion-card>
           <ion-item>
-            <ion-input [(ngModel)]="registroForm.usuario"  name="usuario" type="text" placeholder="Introduce el usuario:" required></ion-input>
+            <ion-input formControlName="usuario"  name="usuario" type="text" required placeholder="Introduce el usuario:"></ion-input>
           </ion-item>
         </ion-card>
         <ion-label>Contraseña</ion-label>
         <ion-card>
           <ion-item>
-            <ion-input [(ngModel)]="registroForm.password" name="password" type="password" placeholder="Introduce la contraseña:" required></ion-input>
+            <ion-input formControlName="password" name="password" type="password" required placeholder="Introduce la contraseña:"></ion-input>
           </ion-item>
         </ion-card>
         <ion-label>Dirección de envío</ion-label>
         <ion-card>
           <ion-item>
-            <ion-input [(ngModel)]="registroForm.direccion" name="direccion" type="text" placeholder="Introduce la direccion:" required></ion-input>
+            <ion-input formControlName="direccion" name="direccion" type="text" required placeholder="Introduce la direccion:"></ion-input>
           </ion-item>
         </ion-card>
         <ion-label>Teléfono</ion-label>
         <ion-card>
           <ion-item>
-            <ion-input [(ngModel)]="registroForm.tlf" name="tlf" type="tel" placeholder="Introduce el teléfono:" required></ion-input>
+            <ion-input formControlName="tlf" name="tlf" type="tel" required placeholder="Introduce el teléfono:"></ion-input>
           </ion-item>
         </ion-card>
         <ion-button class="buttonIni" expand="full" color="primary" shape="round" color="transparent" type="submit">

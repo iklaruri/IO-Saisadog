@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { UsuarioService } from '../servicios/usuario.service';
+
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -11,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class RegistroPage implements OnInit {
 
-  registroForm = {'email':'', 'usuario':'','password':'','direccion':'','tlf':'','foto':''};
+  registroForm:FormGroup;
 
   constructor(private loadingController: LoadingController, private usuarioService: UsuarioService, private router: Router) {
 
@@ -45,6 +47,14 @@ export class RegistroPage implements OnInit {
   }
 
   ngOnInit(){
+
+    this.registroForm = new FormGroup({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      usuario: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required),
+      direccion: new FormControl(null, Validators.required),
+      tlf:  new FormControl(null, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(9),Validators.minLength(9)]),
+    });
 
   }
 

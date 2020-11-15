@@ -5,9 +5,6 @@ import { GenerosProductosPage } from './vistas/generos/productos/generosProducto
 import { AuthGuard } from './guards/auth.guard';
 
 
-
-
-
 const routes: Routes = [
   {
     path: '',
@@ -56,7 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'registro',
-    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
+    loadChildren: () => import('./vistas/registro/registro.module').then( m => m.RegistroPageModule)
   }
 
 
