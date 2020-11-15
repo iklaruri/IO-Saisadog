@@ -7,14 +7,17 @@
 </ion-header>
 
 <ion-content>
-    <div *ngIf="carrito.productos.length > 0">
+    <div *ngIf="carritoVacio === false">
       <form (ngSubmit)="realizarPedido()">
         <div class="contendor" *ngFor="let carritoProducto of carrito.productos; let i = index">
           <img [src]="carritoProducto.ruta">
           <h1>{{carritoProducto.producto}}</h1>
           <p>{{carritoProducto.artista}}</p>
           <p>{{carritoProducto.precio}} €</p>
-          <ion-input class="cantidad" type="number" name="cantidad" [value]="carritoProducto.cantidad" placeholder="Cant." (change)="recalcularPrecioFinal(carritoProducto.cantidad,carritoProducto.precio)"></ion-input>
+          <ion-input class="cantidad" type="text" name="cantidad" [value]="carritoProducto.cantidad" placeholder="Cant." disabled>
+          </ion-input>
+          <ion-icon *ngIf="carritoProducto.cantidad >= 1 || carritoProducto.cantidad <= carritoProducto.stock" name="add-circle-outline" (click)="aumentarCantidad(carritoProducto)"></ion-icon>
+          <ion-icon *ngIf="carritoProducto.cantidad > 1" name="remove-circle-outline" (click)="disminuirCantidad(carritoProducto)"></ion-icon>
           <ion-button fill="clear" class="btnEliminar" expand="full" color="danger" (click)="eliminarProducto(i,carritoProducto)">
             <ion-icon slot="start" name="trash"></ion-icon>
           </ion-button>
@@ -37,7 +40,7 @@
       </form>
     </div>
 
-    <div *ngIf="carrito.productos.length === 0">
+    <div *ngIf="carritoVacio === true">
       <ion-label>Carrito vacio</ion-label>
     </div>
 </ion-content>

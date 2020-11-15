@@ -28,7 +28,6 @@ export class GenerosProductosPage implements OnInit {
 
       this.productoService.getProductosPorGenero(codGenero).subscribe(data => {
         this.productos = data;
-        console.log(this.productos);
         loading.dismiss();
       }, err => {
         console.log(err);
@@ -40,9 +39,7 @@ export class GenerosProductosPage implements OnInit {
   mostrarProducto(codProducto)
   {
     let date_ob = new Date();
-    // current month
     let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-    // current year
     let year = date_ob.getFullYear();
 
     let fecha = year + "-" + month;

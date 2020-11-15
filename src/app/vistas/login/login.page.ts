@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginPage implements OnInit {
 
-  usuarioForm = {'id':-1,'usuario':'', 'password':'','direccion':'','email':'','tlf':'','foto':''};
+  usuarioForm = {'usuario':'', 'password':''};
   usuario = new Usuario();
   tokenUsuario;
 
@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
 
     this.usuarioService.login(this.usuarioForm).subscribe(data => {
       this.usuario = data;
-      this.usuarioForm = {'id':-1,'usuario':'', 'password':'','direccion':'','email':'','tlf':'','foto':''};
+      this.usuarioForm = {'usuario':'', 'password':''};
 
       if(this.usuario != null)
       {

@@ -65,6 +65,7 @@ export class InboxPage implements OnInit {
       let fecha = year + "-" + month;
       this.router.navigateByUrl('/producto/' + codProducto + "/" + fecha);
     }
+    
 
     ngOnInit() {
       this.obtenerProductos();

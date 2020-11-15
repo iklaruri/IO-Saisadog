@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ArtistaProductosPage } from './vistas/artistas/productos/artistaProductos';
 import { GenerosProductosPage } from './vistas/generos/productos/generosProductos';
-import { RegistroPage } from './vistas/login/registro/registro.page';
 import { AuthGuard } from './guards/auth.guard';
+
+
 
 
 
@@ -50,13 +51,16 @@ const routes: Routes = [
     loadChildren: () => import('./vistas/tabsCuenta/tabsCuenta.module').then( m => m.TabsCuentaPageModule)
   },
   {
-    path: 'registro',
-    component: RegistroPage
-  },
-  {
     path: 'producto/:codProducto/:fecha',
     loadChildren: () => import('./vistas/producto/producto.module').then( m => m.ProductoPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   }
+
+
+
 
 ];
 @NgModule({
@@ -65,4 +69,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule {}

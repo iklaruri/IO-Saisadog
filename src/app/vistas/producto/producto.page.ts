@@ -100,6 +100,7 @@ export class ProductoPage implements OnInit {
             if(productoCarrito.talla.id === this.producto.talla.id)
             {
               estaEnCarrito=true;
+              exit;
             }
           }
           estaEnCarrito=true;

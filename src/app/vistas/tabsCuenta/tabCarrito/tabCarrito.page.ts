@@ -5,6 +5,8 @@ import { VentaService } from 'src/app/servicios/venta.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ProductoService } from 'src/app/servicios/producto.service';
+import { Producto } from 'src/app/model/producto';
+import { exit } from 'process';
 
 @Component({
   selector: 'app-tabCarrito',
@@ -17,19 +19,30 @@ export class TabCarritoPage {
   detalleVentaForm = {'codProducto':0,'cantidad':0};
   carrito = new Carrito();
   precioRestar = 0;
+  carritoVacio = true;
+
 
   constructor(private loadingController: LoadingController,private productoService:ProductoService,private ventaService:VentaService,public router:Router) {
-
-    this.carrito.productos = JSON.parse(localStorage.getItem('carrito'));
-    this.carrito.preciofinal = 0;
-    if(this.carrito.productos.length > 0){
-      this.carrito.productos.forEach(carritoProducto => {
-        carritoProducto.precio = carritoProducto.precio*carritoProducto.cantidad;
-        this.carrito.preciofinal = this.carrito.preciofinal+carritoProducto.precio;
-      });
-    }else{
-      this.carrito.productos.length = 0;
+    if(!JSON.parse(localStorage.getItem('carrito')))
+    {
+      this.carritoVacio = true;
+      exit;
+    }else
+    {
+      this.carrito.productos = JSON.parse(localStorage.getItem('carrito'));
+      this.carrito.preciofinal = 0;
+      if(this.carrito.productos.length > 0){
+        this.carrito.productos.forEach(carritoProducto => {
+          carritoProducto.precio = carritoProducto.precio*carritoProducto.cantidad;
+          this.carrito.preciofinal = this.carrito.preciofinal+carritoProducto.precio;
+        });
+      this.carritoVacio = false;
+      }else{
+        this.carrito.productos.length = 0;
+        this.carritoVacio = true;
+      }
     }
+
   }
 
   async anadirVenta()
@@ -89,9 +102,6 @@ export class TabCarritoPage {
     }, err => {
       console.log(err);
     });
-
-
-
   }
 
   eliminarProducto(index:number,carritoProducto)
@@ -102,10 +112,17 @@ export class TabCarritoPage {
     localStorage.setItem('carrito',JSON.stringify(this.carrito.productos));
   }
 
-  // recalcularPrecioFinal(cantidad,precio)
-  // {
-  //   console.log(cantidad,precio);
-  // }
+  aumentarCantidad(carritoProducto)
+  {
+    carritoProducto.cantidad = carritoProducto.cantidad+1;
+    this.carrito.preciofinal = this.carrito.preciofinal+carritoProducto.precio;
+  }
+
+  disminuirCantidad(carritoProducto)
+  {
+    carritoProducto.cantidad = carritoProducto.cantidad-1;
+    this.carrito.preciofinal = this.carrito.preciofinal-carritoProducto.precio;
+  }
 
   obtenerFecha(){
     let date_ob = new Date();

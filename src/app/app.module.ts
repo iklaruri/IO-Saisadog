@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { UsuarioService } from './servicios/usuario.service';
 import { VentaService } from './servicios/venta.service';
+import { TallaService } from './servicios/talla.service';
+import { GeneroService } from './servicios/genero.service';
+import { ArtistaService } from './servicios/artista.service';
 
 
 
@@ -27,7 +30,10 @@ import { VentaService } from './servicios/venta.service';
     StatusBar,
     SplashScreen,
     UsuarioService,
-    VentaService,   
+    TallaService,
+    VentaService,
+    GeneroService,
+    ArtistaService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
