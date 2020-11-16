@@ -5,6 +5,7 @@ import { VentaService } from 'src/app/servicios/venta.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ProductoService } from 'src/app/servicios/producto.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 import { exit } from 'process';
 
@@ -20,9 +21,13 @@ export class TabCarritoPage {
   carrito = new Carrito();
   precioRestar = 0;
   carritoVacio = true;
+  latitud;
+  longitud;
 
 
-  constructor(private loadingController: LoadingController,private productoService:ProductoService,private ventaService:VentaService,public router:Router) {
+  constructor(private loadingController: LoadingController,private productoService:ProductoService,
+    private ventaService:VentaService,public router:Router,private geolocation:Geolocation) {
+
     if(!JSON.parse(localStorage.getItem('carrito')))
     {
       this.carritoVacio = true;
@@ -53,7 +58,9 @@ export class TabCarritoPage {
 
     await loading.present();
 
-    this.ventaForm.fecha = this.obtenerFecha();    
+    this.ventaForm.fecha = this.obtenerFecha();
+    this.ventaForm.direccion = this.latitud + " " + this.longitud;
+    console.log(this.ventaForm.direccion);
 
     this.ventaService.anadirVenta(this.ventaForm).subscribe(data => {
 
@@ -126,7 +133,18 @@ export class TabCarritoPage {
 
   obtenerGeolocalizacion()
   {
-
+    console.log("estoy dentro");
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.latitud = resp.coords.latitude;
+      this.longitud = resp.coords.longitude;
+      this.ventaForm.direccion = this.latitud + " " + this.longitud;
+    }).catch((error) => {
+      Swal.fire({
+        allowOutsideClick:false,
+        icon:'error',
+        text:'Error al conseguir la ubicación'
+      });
+    });
   }
 
   obtenerFecha(){

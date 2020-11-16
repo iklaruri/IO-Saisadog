@@ -7,15 +7,19 @@ import { FormsModule } from '@angular/forms';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { TabCarritoPage } from './tabCarrito.page';
 import { TabCarritoPageRoutingModule } from './tabCarrito-routing.module';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
 @NgModule({
-  imports: [    
+  imports: [
     IonicModule,
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
     TabCarritoPageRoutingModule,
+  ],
+  providers:[
+    Geolocation
   ],
   declarations: [TabCarritoPage]
 })
