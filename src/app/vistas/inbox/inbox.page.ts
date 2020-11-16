@@ -54,6 +54,40 @@ export class InboxPage implements OnInit {
 
     }
 
+    async buscarProductosPorTermino(termino){
+      const loading = await this.loadingController.create(
+      {
+        message:'Cargando'
+      });
+
+      await loading.present();
+
+      this.productoService.getProductosPorTermino(termino).subscribe(data => {
+        this.productos = data;      
+        this.productos.forEach(producto =>
+        {
+          if(producto.tipo=="CD" || producto.tipo=="Album Digital" || producto.tipo=="Vinilo")
+          {
+            this.discos.push(producto);
+          }
+
+          if(producto.tipo=="Ropa")
+          {
+            this.ropas.push(producto);
+          }
+
+          if(producto.tipo=="Otros")
+          {
+            this.otros.push(producto);
+          }
+        });
+        loading.dismiss();
+      }, err => {
+        console.log(err);
+        loading.dismiss();
+      })
+    }
+
     mostrarProducto(codProducto)
     {
       let date_ob = new Date();
@@ -65,7 +99,20 @@ export class InboxPage implements OnInit {
       let fecha = year + "-" + month;
       this.router.navigateByUrl('/producto/' + codProducto + "/" + fecha);
     }
-    
+
+    buscarProductos(termino)
+    {
+      if(termino != '')
+      {
+        this.discos = [];
+        this.otros = [];
+        this.ropas = [];
+        this.buscarProductosPorTermino(termino);
+      }else{
+        this.obtenerProductos();
+      }
+    }
+
 
     ngOnInit() {
       this.obtenerProductos();
