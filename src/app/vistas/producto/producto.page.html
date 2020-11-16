@@ -24,7 +24,7 @@
 
         <ion-card-content *ngIf="tallas.length > 0" id="descripcionProducto">
           <ion-label id="infolabel">Talla</ion-label><br/>
-          <ion-select id="descripcion" required>
+          <ion-select id="descripcion" (ngModelChange)="valor()" name="id" [(ngModel)]="talla1">
             <ion-select-option *ngFor="let talla of tallas" [value]="talla">{{talla.nombre}} (Stock = {{talla.stock}})</ion-select-option>
           </ion-select>
         </ion-card-content>
@@ -34,7 +34,7 @@
           <ion-label id="descripcion" name="stock">{{producto.stock}}</ion-label>
         </ion-card-content>
 
-        <ion-button id="btnComprar" (click)="anadirAlCarrito(talla)" color="primary" expand="full">
+        <ion-button id="btnComprar" (click)="anadirAlCarrito()" color="primary" expand="full">
           Añadir al carrito
         </ion-button>
       </ion-card-content>

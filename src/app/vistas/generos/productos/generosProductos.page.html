@@ -9,19 +9,22 @@
 
 
 <ion-content>
-  <div class="mbsc-padding">
-    <div class="mbsc-grid">
-        <div class="mbsc-row mbsc-no-padding" id="mdma2">
-            <div class="mbsc-col-12 mbsc-col-sm-6 mbsc-col-lg-4 mbsc-col-xl-3" id="mdma" *ngFor="let producto of productos">
-                <mbsc-card (click)="mostrarProducto(producto.id)">
-                    <img [src]="producto.ruta" draggable="false">
-                    <mbsc-card-content>
-                        <mbsc-card-title>{{producto.producto}}</mbsc-card-title>
-                        <p class="mbsc-txt-muted">{{producto.artista}}</p>
-                    </mbsc-card-content>
-                </mbsc-card>
-            </div>
-        </div>
-    </div>
+  <div class="md-cards">
+          <div class="contenedor">
+             <h3>Productos por género</h3>
+             <ion-grid fixed>
+                 <ion-col class="">
+                     <ion-segment scrollable>
+                         <ion-col *ngFor="let producto of productos">
+                             <ion-card-content class="card-scroll"  (click)="mostrarProducto(producto.id)">
+                                 <ion-img [src]="producto.ruta"></ion-img>
+                                 <h4>{{producto.producto}}</h4>
+                                 <h5>{{producto.artista}}</h5>
+                             </ion-card-content>
+                         </ion-col>
+                     </ion-segment>
+                 </ion-col>
+             </ion-grid>
+          </div>
   </div>
 </ion-content>

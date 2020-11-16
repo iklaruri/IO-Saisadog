@@ -27,7 +27,7 @@ export class GenerosProductosPage implements OnInit {
     await loading.present();
 
       this.productoService.getProductosPorGenero(codGenero).subscribe(data => {
-        this.productos = data;
+        this.productos = data;        
         loading.dismiss();
       }, err => {
         console.log(err);

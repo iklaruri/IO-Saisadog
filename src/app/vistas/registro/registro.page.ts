@@ -14,6 +14,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 export class RegistroPage implements OnInit {
 
   registroForm:FormGroup;
+  mensaje;
 
   constructor(private loadingController: LoadingController, private usuarioService: UsuarioService, private router: Router) {
 
@@ -25,15 +26,28 @@ export class RegistroPage implements OnInit {
     );
 
     await loading.present();
-
-    this.usuarioService.registrar(this.registroForm).subscribe(data => {
+    
+    this.usuarioService.registrar(this.registroForm.value).subscribe(data => {
         loading.dismiss();
-        Swal.fire({
-          allowOutsideClick:false,
-          icon:'success',
-          text:'Registro completado'
-        });
-        this.router.navigateByUrl('/login');
+        this.mensaje = data['status'];
+        if(this.mensaje === "Usuario ya existe")
+        {
+          Swal.fire({
+            allowOutsideClick:false,
+            icon:'error',
+            text:this.mensaje
+          });
+          this.router.navigateByUrl('/registro');
+        }else
+        {
+          Swal.fire({
+            allowOutsideClick:false,
+            icon:'success',
+            text:this.mensaje
+          });
+          this.router.navigateByUrl('/login');
+        }
+
     }, err => {
       console.log(err);
       loading.dismiss();
@@ -42,7 +56,6 @@ export class RegistroPage implements OnInit {
 
   enviarFormulario()
   {
-    console.log(this.registroForm);
     this.registro();
   }
 
@@ -53,7 +66,7 @@ export class RegistroPage implements OnInit {
       usuario: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),
       direccion: new FormControl(null, Validators.required),
-      tlf:  new FormControl(null, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(9),Validators.minLength(9)]),
+      tlf:  new FormControl(null, Validators.required)
     });
 
   }

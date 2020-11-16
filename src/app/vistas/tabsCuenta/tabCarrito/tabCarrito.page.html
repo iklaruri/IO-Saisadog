@@ -11,7 +11,7 @@
       <form (ngSubmit)="realizarPedido()">
         <div class="contendor" *ngFor="let carritoProducto of carrito.productos; let i = index">
           <img [src]="carritoProducto.ruta">
-          <h1>{{carritoProducto.producto}}</h1>
+          <h1>{{carritoProducto.producto}} <small *ngIf="carritoProducto.tipo === 'Ropa'">- <strong>{{carritoProducto.talla.nombre}}</strong></small></h1>
           <p>{{carritoProducto.artista}}</p>
           <p>{{carritoProducto.precio}} €</p>
           <ion-input class="cantidad" type="text" name="cantidad" [value]="carritoProducto.cantidad" placeholder="Cant." disabled>

@@ -19,6 +19,7 @@ export class ProductoPage implements OnInit {
   codProducto: string;
   fecha: string;
   producto = new Producto();
+  talla1 = {'id':-1,'nombre':'','stock':0};
   productos:Producto[]=[];
   tallas:Talla[]=[];
 
@@ -52,7 +53,12 @@ export class ProductoPage implements OnInit {
 
         if(this.producto.tipo === "Ropa")
         {
+          let index = 1;
           this.tallaService.getTallas(this.producto.id).subscribe(data => {
+              if(index == 1){
+                this.talla1 = data[0];
+                index = 20;
+              }
               this.tallas = data;
               loading.dismiss();
 
@@ -69,18 +75,19 @@ export class ProductoPage implements OnInit {
 
   }
 
-  anadirAlCarrito(talla)
-  {
-    console.log(talla);
-    this.producto.cantidad = 1;
 
-    if(this.producto.tipo === "Ropa")
-    {
-      this.producto.talla = talla;
-    }
+
+  anadirAlCarrito()
+  {
+
+    this.producto.cantidad = 1;
 
     if(this.productos.length === 0)
     {
+      if(this.producto.tipo === "Ropa")
+      {
+        this.producto.talla = this.obtenerTalla();
+      }
 
       this.productos.push(this.producto);
       localStorage.setItem('carrito',JSON.stringify(this.productos));
@@ -118,6 +125,10 @@ export class ProductoPage implements OnInit {
           });
         }else
         {
+          if(this.producto.tipo === "Ropa")
+          {
+            this.producto.talla = this.obtenerTalla();
+          }
 
           this.productos.push(this.producto);
           localStorage.setItem('carrito',JSON.stringify(this.productos));
@@ -131,6 +142,11 @@ export class ProductoPage implements OnInit {
 
     }
 
+  }
+
+  obtenerTalla()
+  {
+    return this.talla1;
   }
 
   ngOnInit() {

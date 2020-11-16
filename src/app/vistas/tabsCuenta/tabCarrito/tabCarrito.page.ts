@@ -5,7 +5,7 @@ import { VentaService } from 'src/app/servicios/venta.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ProductoService } from 'src/app/servicios/producto.service';
-import { Producto } from 'src/app/model/producto';
+
 import { exit } from 'process';
 
 @Component({
@@ -15,7 +15,7 @@ import { exit } from 'process';
 })
 export class TabCarritoPage {
 
-  ventaForm = {'codUsuario':JSON.parse(localStorage.getItem('usuario')),'fecha':'','direccion':'Lehendakari Agirre,45'};
+  ventaForm = {'codUsuario':JSON.parse(localStorage.getItem('usuario')),'fecha':'','direccion':''};
   detalleVentaForm = {'codProducto':0,'cantidad':0};
   carrito = new Carrito();
   precioRestar = 0;
@@ -53,7 +53,7 @@ export class TabCarritoPage {
 
     await loading.present();
 
-    this.ventaForm.fecha = this.obtenerFecha();
+    this.ventaForm.fecha = this.obtenerFecha();    
 
     this.ventaService.anadirVenta(this.ventaForm).subscribe(data => {
 
@@ -61,27 +61,27 @@ export class TabCarritoPage {
         this.detalleVentaForm.codProducto = carritoProducto.id;
         this.detalleVentaForm.cantidad = carritoProducto.cantidad;
 
-        // carritoProducto.stock = carritoProducto.stock-carritoProducto.cantidad;
-        // const stockProducto = {'codProducto':carritoProducto.id,'stock':carritoProducto.stock};
-        //
-        // this.productoService.actualizarStock(stockProducto).subscribe(data => {
-        //   console.log(data);
-        //   if(carritoProducto.tipo === "Ropa")
-        //   {
-        //     carritoProducto.talla.stock = carritoProducto.talla.stock-carritoProducto.cantidad;
-        //     const stockProductoTalla = {'codTallaje':carritoProducto.talla.id,'codProducto':carritoProducto.id,'stock':carritoProducto.talla.stock};
-        //
-        //     this.productoService.actualizarRopaStock(stockProductoTalla).subscribe(data => {
-        //       console.log(data);
-        //     },err => {
-        //       console.log(err);
-        //       loading.dismiss();
-        //     });
-        //   }
-        // }, err => {
-        //   console.log(err);
-        //   loading.dismiss();
-        // });
+        carritoProducto.stock = carritoProducto.stock-carritoProducto.cantidad;
+        const stockProducto = {'codProducto':carritoProducto.id,'stock':carritoProducto.stock};
+
+        this.productoService.actualizarStock(stockProducto).subscribe(data => {
+
+          if(carritoProducto.tipo === "Ropa")
+          {
+            carritoProducto.talla.stock = carritoProducto.talla.stock-carritoProducto.cantidad;
+            const stockProductoTalla = {'codTallaje':carritoProducto.talla.id,'codProducto':carritoProducto.id,'stock':carritoProducto.talla.stock};
+
+            this.productoService.actualizarRopaStock(stockProductoTalla).subscribe(data => {
+              console.log(data);
+            },err => {
+              console.log(err);
+              loading.dismiss();
+            });
+          }
+        }, err => {
+          console.log(err);
+          loading.dismiss();
+        });
 
         this.ventaService.anadirdetalleVenta(this.detalleVentaForm).subscribe(data => {
           loading.dismiss();
@@ -122,6 +122,11 @@ export class TabCarritoPage {
   {
     carritoProducto.cantidad = carritoProducto.cantidad-1;
     this.carrito.preciofinal = this.carrito.preciofinal-carritoProducto.precio;
+  }
+
+  obtenerGeolocalizacion()
+  {
+
   }
 
   obtenerFecha(){
