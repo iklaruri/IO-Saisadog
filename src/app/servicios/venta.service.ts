@@ -19,4 +19,9 @@ export class VentaService {
   {
     return this.httpClient.post(URL_SERVICIO + "/detalleVenta/anadir", detalleVenta,httpOptions);
   }
+
+  obtenerPedidos(codUsuario,fecha): Observable<any>
+  {
+    return this.httpClient.get(URL_SERVICIO + "/venta/obtener/" + codUsuario + "/" + fecha,httpOptions);
+  }
 }

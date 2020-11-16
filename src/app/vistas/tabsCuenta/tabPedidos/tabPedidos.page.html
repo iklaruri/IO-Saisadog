@@ -7,5 +7,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-label>Pedidos</ion-label>
+  <ion-item>
+  <ion-label>Meses</ion-label>
+  <ion-select [(ngModel)]="mes" (ngModelChange)="obtenerPedidos(mes)">
+          <ion-select-option [value]="mes" *ngFor="let mes of meses">{{mes.nombre}}</ion-select-option>
+  </ion-select>
+  </ion-item>
 </ion-content>

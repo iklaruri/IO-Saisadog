@@ -24,6 +24,17 @@ export class UsuarioService {
     return this.httpClient.post(URL_SERVICIO + "/usuario/anadir", usuario,httpOptions);
   }
 
+  actualizar(usuario:any):Observable<any>
+  {
+    return this.httpClient.put(URL_SERVICIO + "/usuario/actualizar", usuario,httpOptions);
+  }
+
+  getUsuario(codUsuario):Observable<any>
+  {
+    return this.httpClient.get(URL_SERVICIO + "/usuario/obtener/" + codUsuario,httpOptions);
+  }
+
+
   autenticado()
   {
     this.usuarioToken = JSON.parse(localStorage.getItem('usuario'));
