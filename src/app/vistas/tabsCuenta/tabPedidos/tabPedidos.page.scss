@@ -8,10 +8,11 @@ h3 {
 
 #datosPedido {
     width: 100%;
-    border: .5px solid rgba(0, 0, 0, .4);
     display: flex;
     justify-content: space-between;
     position: relative;
+    border: .5px solid rgba(0, 0, 0, .4);
+    margin-bottom: 10px;
 }
 
 
@@ -20,6 +21,7 @@ h3 {
 .productos{
     clear: both;
     margin-bottom: 0px;
+
 }
 
 

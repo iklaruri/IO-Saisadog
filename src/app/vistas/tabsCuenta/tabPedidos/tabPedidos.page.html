@@ -8,23 +8,29 @@
 
 <ion-content>
   <ion-item>
-  <ion-label>Meses</ion-label>
+  <ion-label>Mes</ion-label>
   <ion-select [(ngModel)]="mes" (ngModelChange)="obtenerPedidos(mes)">
           <ion-select-option [value]="mes" *ngFor="let mes of meses">{{mes.nombre}}</ion-select-option>
   </ion-select>
   </ion-item>
 
-  <div id="contenedor">
-   <div id="productos" *ngFor="let pedido of pedidos">
-     <div id="datosPedido">
-       <h3>Num.Pedido:{{pedido.idVenta}}</h3>
-       <p>{{pedido.fecha}}</p>
+
+    <div id="contenedor" *ngIf="pedidos">
+     <div id="productos" *ngFor="let pedido of pedidos" (click)="mostrarDetallePedidos()">
+       <div id="datosPedido">
+         <h3>Num.Pedido: {{pedido.id}}</h3>
+         <p>{{pedido.fecha}}</p>
+       </div>
+       <ng-container *ngIf="mostrar">
+       <div id="detalles" *ngFor="let detallePedido of pedido.detallePedidos">
+         <img [src]="detallePedido.imagen">
+         <h1>{{detallePedido.artista}}</h1>
+         <p>{{detallePedido.producto}} x {{detallePedido.cantidad}}</p>
+         <p>{{detallePedido.precio}} €</p>
+         <hr class="fincontendor"/>
+       </div>
+       </ng-container>
      </div>
-     <img [src]="pedido.ruta">
-     <h1>{{pedido.artita}}</h1>
-     <p>{{pedido.producto}} x {{pedido.cantidad}}</p>
-     <p>{{pedido.precio}}</p>    
-     <hr class="fincontendor"/>
    </div>
- </div>
+
 </ion-content>
