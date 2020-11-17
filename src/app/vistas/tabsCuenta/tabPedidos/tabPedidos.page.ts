@@ -44,7 +44,7 @@ export class TabPedidosPage implements OnInit{
         this.pedido.id = data.idVenta;
         this.pedido.fecha = data.fecha;
         console.log(this.pedido);
-        
+        this.pedidos.push(this.pedido);        
         this.ventaService.obtenerDetallesPedido(this.pedido.id,this.fecha).subscribe(data => {
           console.log(data);
           this.pedido.detallePedidos = data;
