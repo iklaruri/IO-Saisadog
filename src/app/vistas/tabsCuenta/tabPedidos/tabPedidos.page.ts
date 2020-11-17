@@ -22,7 +22,6 @@ export class TabPedidosPage implements OnInit{
   pedidos:Pedido[]=[];
   pedido:Pedido;
   detallePedidos:DetallePedido[]=[];
-  detallePedido:DetallePedido;
   mostrar = false;
 
 
@@ -40,47 +39,23 @@ export class TabPedidosPage implements OnInit{
     await loading.present();
 
     this.ventaService.obtenerPedidos(this.codUsuario,this.fecha).subscribe(data => {
-      let codVenta = 0;
-      console.log(data);
       data.forEach(data => {
-
-          if(codVenta === 0)
-          {
-            codVenta = data.idVenta;
-
-            this.pedido = new Pedido();
-            this.pedido.id = data.idVenta;
-            this.pedido.fecha = data.fecha;
-
-            this.detallePedido = new DetallePedido();
-            this.detallePedido.id = data.idDetalle;
-            this.detallePedido.artista = data.artista;
-            this.detallePedido.cantidad = data.cantidad;
-            this.detallePedido.imagen = data.ruta;
-            this.detallePedido.producto = data.producto;
-            this.detallePedido.precio = data.precio;
-          }else{
-            if(codVenta === data.idVenta)
-            {
-              this.detallePedido = new DetallePedido();
-              this.detallePedido.id = data.idDetalle;
-              this.detallePedido.artista = data.artista;
-              this.detallePedido.cantidad = data.cantidad;
-              this.detallePedido.imagen = data.ruta;
-              this.detallePedido.producto = data.producto;
-              this.detallePedido.precio = data.precio;
-
-            }else
-            {
-              codVenta = 0;
-
-            }
-          }
-          this.detallePedidos.push(this.detallePedido);
-          this.pedido.detallePedidos = this.detallePedidos;
+        this.pedido = new Pedido();
+        this.pedido.id = data.idVenta;
+        this.pedido.fecha = data.fecha;
+        console.log(this.pedido);
+        
+        this.ventaService.obtenerDetallesPedido(this.pedido.id,this.fecha).subscribe(data => {
+          console.log(data);
+          this.pedido.detallePedidos = data;
+          this.pedidos.push(this.pedido);
+          this.detallePedidos=[];
+        }, err => {
+          console.log(err);
+          loading.dismiss();
+        });
       });
-      this.pedidos.push(this.pedido);
-      console.log(this.pedidos);
+
       loading.dismiss();
 
     }, err => {
@@ -99,7 +74,7 @@ export class TabPedidosPage implements OnInit{
     if(this.mostrar === false){
       this.mostrar=true;
     }else{
-      this.mostrar=false;      
+      this.mostrar=false;
     }
   }
 

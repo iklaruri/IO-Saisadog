@@ -5,5 +5,6 @@ export class DetallePedido
   artista:string;
   precio:number;
   cantidad:number;
-  imagen:string;  
+  imagen:string;
+  talla:string
 }

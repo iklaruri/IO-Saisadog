@@ -24,4 +24,9 @@ export class VentaService {
   {
     return this.httpClient.get(URL_SERVICIO + "/venta/obtener/" + codUsuario + "/" + fecha,httpOptions);
   }
+
+  obtenerDetallesPedido(codPedido,fecha): Observable<any>
+  {
+    return this.httpClient.get(URL_SERVICIO + "/detalleVenta/obtener/" + codPedido + "/" + fecha,httpOptions);
+  }
 }

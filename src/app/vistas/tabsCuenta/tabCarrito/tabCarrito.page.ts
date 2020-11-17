@@ -17,7 +17,7 @@ import { exit } from 'process';
 export class TabCarritoPage implements OnInit{
 
   ventaForm = {'codUsuario':JSON.parse(localStorage.getItem('usuario')),'fecha':'','direccion':''};
-  detalleVentaForm = {'codProducto':0,'cantidad':0};
+  detalleVentaForm = {'codProducto':0,'cantidad':0,'talla':''};
   carrito = new Carrito();
   precioRestar = 0;
   carritoVacio = true;
@@ -96,6 +96,11 @@ export class TabCarritoPage implements OnInit{
         this.carrito.productos.forEach(carritoProducto => {
           this.detalleVentaForm.codProducto = carritoProducto.id;
           this.detalleVentaForm.cantidad = carritoProducto.cantidad;
+          if(carritoProducto.tipo === "Ropa"){
+            this.detalleVentaForm.talla = carritoProducto.talla.nombre;
+          }else{
+              this.detalleVentaForm.talla = '';
+          }
 
           carritoProducto.stock = carritoProducto.stock-carritoProducto.cantidad;
           const stockProducto = {'codProducto':carritoProducto.id,'stock':carritoProducto.stock};
@@ -171,17 +176,16 @@ export class TabCarritoPage implements OnInit{
 
 
   obtenerFecha(){
-    let date_ob = new Date();
-    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-    let year = date_ob.getFullYear();
-    let day = ("0" + (date_ob.getUTCDay() + 1)).slice(-2);
-    let hour = ("0" + (date_ob.getHours())).slice(-2);
-    let minutes = ("0" + (date_ob.getMinutes() + 1)).slice(-2);
-    let seconds = ("0" + (date_ob.getSeconds() + 1)).slice(-2);
+    let date = new Date();
+    console.log(date);
+    let month = ("0" + (date.getMonth() + 1)).slice(-2);
+    let year = date.getFullYear();
+    let day = ("0" + (date.getDay())).slice(-2);
+    let hour = ("0" + (date.getHours())).slice(-2);
+    let minutes = ("0" + (date.getMinutes())).slice(-2);
+    let seconds = ("0" + (date.getSeconds())).slice(-2);
 
     let fecha = year + "-" + month  + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
-    console.log(fecha);
-    
     return fecha;
   }
 
