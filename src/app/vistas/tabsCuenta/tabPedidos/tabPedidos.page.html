@@ -13,4 +13,18 @@
           <ion-select-option [value]="mes" *ngFor="let mes of meses">{{mes.nombre}}</ion-select-option>
   </ion-select>
   </ion-item>
+
+  <div id="contenedor">
+   <div id="productos" *ngFor="let pedido of pedidos">
+     <div id="datosPedido">
+       <h3>Num.Pedido:{{pedido.idVenta}}</h3>
+       <p>{{pedido.fecha}}</p>
+     </div>
+     <img [src]="pedido.ruta">
+     <h1>{{pedido.artita}}</h1>
+     <p>{{pedido.producto}} x {{pedido.cantidad}}</p>
+     <p>{{pedido.precio}}</p>    
+     <hr class="fincontendor"/>
+   </div>
+ </div>
 </ion-content>

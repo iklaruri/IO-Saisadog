@@ -34,6 +34,8 @@ export class TabPedidosPage implements OnInit{
 
     this.ventaService.obtenerPedidos(this.codUsuario,this.fecha).subscribe(data => {
       this.pedidos = data;
+      loading.dismiss();
+      console.log(this.pedidos);
     }, err => {
       console.log(err);
       loading.dismiss();
@@ -43,7 +45,6 @@ export class TabPedidosPage implements OnInit{
   obtenerPedidos(mes)
   {
     this.fecha = this.anio + "-" + mes.valor;
-    console.log(this.fecha);
     this.historialPedidos(this.codUsuario,this.fecha);
   }
 

@@ -3,28 +3,25 @@
     <ion-buttons slot=start>
       <ion-back-button defaultHref="artistas"></ion-back-button>
     </ion-buttons>
-    <ion-input type="text" placeholder="Buscar"></ion-input>
+    <!-- <ion-input type="text" placeholder="Buscar"></ion-input> -->
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
-  <div class="md-cards">
-          <div class="contenedor">
-             <h3>Productos por género</h3>
-             <ion-grid fixed>
-                 <ion-col class="">
-                     <ion-segment scrollable>
-                         <ion-col *ngFor="let producto of productos">
-                             <ion-card-content class="card-scroll"  (click)="mostrarProducto(producto.id)">
-                                 <ion-img [src]="producto.ruta"></ion-img>
-                                 <h4>{{producto.producto}}</h4>
-                                 <h5>{{producto.artista}}</h5>
-                             </ion-card-content>
-                         </ion-col>
-                     </ion-segment>
-                 </ion-col>
-             </ion-grid>
-          </div>
+  <div>
+    <div>
+        <div id="mdma2">
+            <div id="mdma" *ngFor="let producto of productos">
+                <ion-card class="productoCard" (click)="mostrarProducto(producto.id)">
+                    <img class="imgProducto" [src]="producto.ruta" draggable="false">
+                    <ion-card-content>
+                        <h4>{{producto.producto}}</h4>
+                        <p class="mbsc-txt-muted">{{producto.artista}}</p>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </div>
+    </div>
   </div>
 </ion-content>

@@ -1,0 +1,58 @@
+
+//CSS de los datos del pedido
+
+h3 {
+    font-size: 15px;
+}
+
+
+#datosPedido {
+    width: 100%;
+    border: .5px solid rgba(0, 0, 0, .4);
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+
+//CSS del listado de productos del pedido
+
+.productos{
+    clear: both;
+    margin-bottom: 0px;
+}
+
+
+.cantidad {
+    max-width: 25%;
+    float:left;
+    border-bottom: 1px solid blue;
+}
+
+.fincontendor {
+    clear: both;
+}
+
+img {
+    max-width: 30%;
+    margin: 10px;
+    float: left;
+}
+
+h1 {
+    font-size: 18px;
+    padding-top: 5px;
+    margin-bottom: 0px;
+}
+
+p {
+    color: grey;
+    margin: 0px;
+    margin: 0px;
+}
+
+ion-input.cantidad {
+    max-width: 25%;
+    float:left;
+    border-bottom: 1px solid blue;
+}

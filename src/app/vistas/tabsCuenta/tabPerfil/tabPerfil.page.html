@@ -16,9 +16,10 @@
       <ion-icon slot="start" name="create"></ion-icon>
     </ion-button> -->
 
-    <ion-label>Correo Electronico</ion-label>
+    <ion-label>Correo Electrónico</ion-label>
     <ion-card>
       <ion-item>
+        <ion-input formControlName="codUsuario"  name="codUsuario" type="text" [value]="usuario.id" hidden></ion-input>
         <ion-input formControlName="email"  name="email" type="email" [value]="usuario.email" required placeholder="Introduce el email:"></ion-input>
         <ion-button fill="clear" class="btnEditar" expand="full" color="primary" type="submit">
           <ion-icon slot="start" name="create"></ion-icon>
@@ -27,7 +28,7 @@
     </ion-card>
     <ion-label>Usuario</ion-label>
     <ion-card>
-      <ion-item>        
+      <ion-item>
         <ion-input formControlName="usuario"  name="usuario" type="text" [value]="usuario.usuario" required placeholder="Introduce el usuario:"></ion-input>
         <ion-button fill="clear" class="btnEditar" expand="full" color="primary" type="submit">
           <ion-icon slot="start" name="create"></ion-icon>

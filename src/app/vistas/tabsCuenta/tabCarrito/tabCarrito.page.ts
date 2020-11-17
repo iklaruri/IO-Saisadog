@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Carrito } from 'src/app/model/carrito';
 import { LoadingController } from '@ionic/angular';
 import { VentaService } from 'src/app/servicios/venta.service';
@@ -14,7 +14,7 @@ import { exit } from 'process';
   templateUrl: 'tabCarrito.page.html',
   styleUrls: ['tabCarrito.page.scss']
 })
-export class TabCarritoPage {
+export class TabCarritoPage implements OnInit{
 
   ventaForm = {'codUsuario':JSON.parse(localStorage.getItem('usuario')),'fecha':'','direccion':''};
   detalleVentaForm = {'codProducto':0,'cantidad':0};
@@ -50,6 +50,26 @@ export class TabCarritoPage {
 
   }
 
+
+  obtenerGeolocalizacion()
+  {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.latitud = resp.coords.latitude;
+      this.longitud = resp.coords.longitude;
+      this.ventaForm.direccion = this.latitud + " " + this.longitud;
+
+    }).catch((error) => {
+      Swal.fire({
+        allowOutsideClick:false,
+        icon:'error',
+        text:'Error al conseguir la ubicación'
+      });
+
+    });
+
+
+  }
+
   async anadirVenta()
   {
     const loading = await this.loadingController.create(
@@ -59,64 +79,81 @@ export class TabCarritoPage {
     await loading.present();
 
     this.ventaForm.fecha = this.obtenerFecha();
-    this.ventaForm.direccion = this.latitud + " " + this.longitud;
-    console.log(this.ventaForm.direccion);
 
-    this.ventaService.anadirVenta(this.ventaForm).subscribe(data => {
+    let getUbicacion = false;
 
-      this.carrito.productos.forEach(carritoProducto => {
-        this.detalleVentaForm.codProducto = carritoProducto.id;
-        this.detalleVentaForm.cantidad = carritoProducto.cantidad;
+    if(this.ventaForm.direccion != null)
+    {
+      getUbicacion = true;
+    }else{
+      getUbicacion = false;
+    }
 
-        carritoProducto.stock = carritoProducto.stock-carritoProducto.cantidad;
-        const stockProducto = {'codProducto':carritoProducto.id,'stock':carritoProducto.stock};
+    if(getUbicacion === true)
+    {
+      this.ventaService.anadirVenta(this.ventaForm).subscribe(data => {
 
-        this.productoService.actualizarStock(stockProducto).subscribe(data => {
+        this.carrito.productos.forEach(carritoProducto => {
+          this.detalleVentaForm.codProducto = carritoProducto.id;
+          this.detalleVentaForm.cantidad = carritoProducto.cantidad;
 
-          if(carritoProducto.tipo === "Ropa")
-          {
-            carritoProducto.talla.stock = carritoProducto.talla.stock-carritoProducto.cantidad;
-            const stockProductoTalla = {'codTallaje':carritoProducto.talla.id,'codProducto':carritoProducto.id,'stock':carritoProducto.talla.stock};
+          carritoProducto.stock = carritoProducto.stock-carritoProducto.cantidad;
+          const stockProducto = {'codProducto':carritoProducto.id,'stock':carritoProducto.stock};
 
-            this.productoService.actualizarRopaStock(stockProductoTalla).subscribe(data => {
-              console.log(data);
-            },err => {
-              console.log(err);
-              loading.dismiss();
-            });
-          }
-        }, err => {
-          console.log(err);
-          loading.dismiss();
-        });
+          this.productoService.actualizarStock(stockProducto).subscribe(data => {
 
-        this.ventaService.anadirdetalleVenta(this.detalleVentaForm).subscribe(data => {
-          loading.dismiss();
+            if(carritoProducto.tipo === "Ropa")
+            {
+              carritoProducto.talla.stock = carritoProducto.talla.stock-carritoProducto.cantidad;
+              const stockProductoTalla = {'codTallaje':carritoProducto.talla.id,'codProducto':carritoProducto.id,'stock':carritoProducto.talla.stock};
 
-          Swal.fire({
-            allowOutsideClick:false,
-            icon:'success',
-            text:'Pedido realizado'
+              this.productoService.actualizarRopaStock(stockProductoTalla).subscribe(data => {
+                console.log(data);
+              },err => {
+                console.log(err);
+                loading.dismiss();
+              });
+            }
+          }, err => {
+            console.log(err);
+            loading.dismiss();
           });
-          this.router.navigateByUrl('');
-        }, err => {
-          console.log(err);
-          loading.dismiss();
+
+          this.ventaService.anadirdetalleVenta(this.detalleVentaForm).subscribe(data => {
+            loading.dismiss();
+            localStorage.removeItem('carrito');
+            Swal.fire({
+              allowOutsideClick:false,
+              icon:'success',
+              text:'Pedido realizado'
+            });
+            this.router.navigateByUrl('');
+          }, err => {
+            console.log(err);
+            loading.dismiss();
+          });
+
         });
 
+      }, err => {
+        console.log(err);
       });
+    }else{
+      loading.dismiss();
+      return;
+    }
 
-    }, err => {
-      console.log(err);
-    });
   }
 
   eliminarProducto(index:number,carritoProducto)
   {
     this.precioRestar = carritoProducto.precio*carritoProducto.cantidad;
     this.carrito.preciofinal = this.carrito.preciofinal-this.precioRestar;
-    this.carrito.productos.splice(index);
+    this.carrito.productos.splice(index,1);
     localStorage.setItem('carrito',JSON.stringify(this.carrito.productos));
+    if(this.carrito.productos.length === 0){
+      this.carritoVacio = true;
+    }
   }
 
   aumentarCantidad(carritoProducto)
@@ -131,30 +168,16 @@ export class TabCarritoPage {
     this.carrito.preciofinal = this.carrito.preciofinal-carritoProducto.precio;
   }
 
-  obtenerGeolocalizacion()
-  {
-    console.log("estoy dentro");
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.latitud = resp.coords.latitude;
-      this.longitud = resp.coords.longitude;
-      this.ventaForm.direccion = this.latitud + " " + this.longitud;
-    }).catch((error) => {
-      Swal.fire({
-        allowOutsideClick:false,
-        icon:'error',
-        text:'Error al conseguir la ubicación'
-      });
-    });
-  }
+
 
   obtenerFecha(){
     let date_ob = new Date();
     let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
     let year = date_ob.getFullYear();
     let day = ("0" + (date_ob.getDay() + 1)).slice(-2);
-    let hour = date_ob.getHours();
-    let minutes = date_ob.getMinutes();
-    let seconds = date_ob.getSeconds();
+    let hour = ("0" + (date_ob.getHours())).slice(-2);
+    let minutes = ("0" + (date_ob.getMinutes() + 1)).slice(-2);
+    let seconds = ("0" + (date_ob.getSeconds() + 1)).slice(-2);
 
     let fecha = year + "-" + month  + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
 
@@ -164,6 +187,10 @@ export class TabCarritoPage {
   realizarPedido()
   {
     this.anadirVenta();
+  }
+
+  ngOnInit(){
+    this.obtenerGeolocalizacion();
   }
 
 }

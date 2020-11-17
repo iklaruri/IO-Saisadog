@@ -19,18 +19,22 @@ export class LoginPage implements OnInit {
 
 
   constructor(private loadingController: LoadingController, private usuarioService: UsuarioService, private router: Router) {
-      if(JSON.parse(localStorage.getItem('usuario')))
-      {
-        this.tokenUsuario = JSON.parse(localStorage.getItem('usuario'));
-      }else
-      {
-        this.tokenUsuario = null;
-      }
-
   }
 
   ngOnInit() {
 
+  }
+
+
+  ionViewWillEnter()
+  {
+    if(JSON.parse(localStorage.getItem('usuario')))
+    {
+      this.tokenUsuario = JSON.parse(localStorage.getItem('usuario'));
+    }else
+    {
+      this.tokenUsuario = null;
+    }
   }
 
   async login() {
@@ -50,6 +54,7 @@ export class LoginPage implements OnInit {
         this.expiraSesion();
 
         this.router.navigateByUrl('');
+
       }else
       {
 

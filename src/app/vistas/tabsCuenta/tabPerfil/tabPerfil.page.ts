@@ -74,6 +74,7 @@ export class TabPerfilPage implements OnInit{
     this.obtenerUsuario(this.codUsuario);
 
     this.perfilForm = new FormGroup({
+      codUsuario: new FormControl(null),
       email: new FormControl(null, [Validators.required, Validators.email]),
       usuario: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),

@@ -97,22 +97,36 @@ export class ProductoPage implements OnInit {
         icon:'success',
         text:'Producto añadido al carrito'
       });
+      this.router.navigateByUrl('');
     }else
     {
       let estaEnCarrito = false;
 
+      if(this.producto.tipo === "Ropa")
+      {
+        this.producto.talla = this.obtenerTalla();
+      }
+
       this.productos.forEach(productoCarrito => {
-        if(productoCarrito.id === this.producto.id){
+
           if(productoCarrito.tipo === "Ropa"){
-            if(productoCarrito.talla.id === this.producto.talla.id)
-            {
+            if(this.producto.id === productoCarrito.id){
+              if(this.producto.talla.id === productoCarrito.talla.id)
+              {
+                estaEnCarrito=true;
+                exit;
+              }
+              else{
+                estaEnCarrito=false;
+                exit;
+              }
+            }
+          }else{
+            if(productoCarrito.id === this.producto.id){
               estaEnCarrito=true;
               exit;
             }
           }
-          estaEnCarrito=true;
-          exit;
-        }
 
       });
 
@@ -123,13 +137,9 @@ export class ProductoPage implements OnInit {
             icon:'warning',
             text:'El producto ya ha sido añadido al carrito'
           });
+          this.router.navigateByUrl('');
         }else
         {
-          if(this.producto.tipo === "Ropa")
-          {
-            this.producto.talla = this.obtenerTalla();
-          }
-
           this.productos.push(this.producto);
           localStorage.setItem('carrito',JSON.stringify(this.productos));
 
@@ -138,6 +148,8 @@ export class ProductoPage implements OnInit {
             icon:'success',
             text:'Producto añadido al carrito'
           });
+          estaEnCarrito=false;
+          this.router.navigateByUrl('');
         }
 
     }

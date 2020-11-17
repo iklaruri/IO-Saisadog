@@ -29,10 +29,6 @@
             <ion-label>Precio total:</ion-label>
             <ion-label name="precioFinal">{{carrito.preciofinal}} €</ion-label>
           </ion-item>
-          <ion-button class="buttonDireccion"  fill="clear" (click)="obtenerGeolocalizacion()">Obtener Direccion</ion-button>
-          <ion-item>
-            <ion-input [(ngModel)]="ventaForm.direccion" name="direccion" type="text" [value]="ventaForm.direccion" placeholder="Direccion actual" required></ion-input>
-          </ion-item>
           <ion-button class="buttonIni" expand="full" color="primary" shape="round" color="transparent" type="submit">
             Realizar Compra
           </ion-button>
