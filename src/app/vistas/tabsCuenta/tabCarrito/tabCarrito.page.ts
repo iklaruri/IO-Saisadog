@@ -64,10 +64,7 @@ export class TabCarritoPage implements OnInit{
         icon:'error',
         text:'Error al conseguir la ubicación'
       });
-
     });
-
-
   }
 
   async anadirVenta()
@@ -113,7 +110,6 @@ export class TabCarritoPage implements OnInit{
               const stockProductoTalla = {'codTallaje':carritoProducto.talla.id,'codProducto':carritoProducto.id,'stock':carritoProducto.talla.stock};
 
               this.productoService.actualizarRopaStock(stockProductoTalla).subscribe(data => {
-                console.log(data);
               },err => {
                 console.log(err);
                 loading.dismiss();
@@ -126,12 +122,12 @@ export class TabCarritoPage implements OnInit{
 
           this.ventaService.anadirdetalleVenta(this.detalleVentaForm).subscribe(data => {
             loading.dismiss();
-            localStorage.removeItem('carrito');
             Swal.fire({
               allowOutsideClick:false,
               icon:'success',
               text:'Pedido realizado'
             });
+            localStorage.removeItem('carrito');
             this.router.navigateByUrl('');
           }, err => {
             console.log(err);
@@ -143,7 +139,7 @@ export class TabCarritoPage implements OnInit{
       }, err => {
         console.log(err);
       });
-      
+
     }else{
       loading.dismiss();
       return;

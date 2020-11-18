@@ -48,10 +48,8 @@ export class TabPedidosPage implements OnInit{
             this.pedido.detallePedidos = data;
             this.pedidos.push(this.pedido);
           });
-          loading.dismiss();
-
         });
-
+        loading.dismiss();
       }, err => {
         console.log(err);
         loading.dismiss();

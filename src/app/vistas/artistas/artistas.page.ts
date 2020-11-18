@@ -33,9 +33,26 @@ export class ArtistasPage implements OnInit {
 
   }
 
+  async buscarArtistasPorTermino(termino)
+  {
+    this.artistaService.getArtistasPorTermino(termino).subscribe(data => {
+      this.artistas = data;
+
+    }, err => {
+      console.log(err);
+
+    });
+  }
+
   buscarArtistas(termino)
   {
-    
+    if(termino != '')
+    {
+      this.artistas = [];
+      this.buscarArtistasPorTermino(termino);
+    }else{
+      this.obtenerArtistas();
+    }
   }
 
   mostrarProductos(codArtista)
