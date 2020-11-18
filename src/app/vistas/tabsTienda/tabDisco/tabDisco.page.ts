@@ -15,10 +15,10 @@ export class TabDiscoPage {
   cds:Producto[]=[];
   albumDigitales:Producto[]=[];
   vinilos:Producto[]=[];
-
+  discos:Producto[]=[];
   constructor(private productoService:ProductoService,private router:Router,public loadingController:LoadingController) { }
 
-  
+
   async obtenerProductos()
   {
     const loading = await this.loadingController.create(
@@ -48,6 +48,34 @@ export class TabDiscoPage {
 
   }
 
+  async buscarDiscosPorTermino(termino){
+    this.productoService.getDiscosPorTermino(termino).subscribe(data => {
+      this.discos = data;
+      this.discos.forEach(producto =>
+      {
+        if(producto.tipo=="CD")
+        {
+          this.cds.push(producto);
+        }
+
+        if(producto.tipo=="AlbumDigital")
+        {
+          this.albumDigitales.push(producto);
+        }
+
+        if(producto.tipo=="Vinilo")
+        {
+          this.vinilos.push(producto);
+        }
+      });
+
+    }, err => {
+      console.log(err);
+
+    });
+  }
+
+
   mostrarProducto(codProducto)
   {
     let date_ob = new Date();
@@ -58,6 +86,19 @@ export class TabDiscoPage {
 
     let fecha = year + "-" + month;
     this.router.navigateByUrl('/producto/' + codProducto + "/" + fecha);
+  }
+
+  buscarDiscos(termino)
+  {
+    if(termino != '')
+    {
+      this.cds = [];
+      this.albumDigitales = [];
+      this.vinilos = [];
+      this.buscarDiscosPorTermino(termino);
+    }else{
+      this.obtenerProductos();
+    }
   }
 
   ngOnInit() {

@@ -16,12 +16,12 @@
 
 
     <div id="contenedor" *ngIf="pedidos">
-     <div id="productos" *ngFor="let pedido of pedidos" (click)="mostrarDetallePedidos()">
+     <div id="productos" *ngFor="let pedido of pedidos; let i = index" (click)="mostrarDetallePedidos(i)">
        <div id="datosPedido">
          <h3>Num.Pedido: {{pedido.id}}</h3>
          <p>{{pedido.fecha}}</p>
        </div>
-       <ng-container *ngIf="mostrar">
+       <ng-container *ngIf="mostrar==i">
        <div id="detalles" *ngFor="let detallePedido of pedido.detallePedidos">
          <img [src]="detallePedido.imagen">
          <h1>{{detallePedido.artista}}</h1>
@@ -31,6 +31,10 @@
        </div>
        </ng-container>
      </div>
+   </div>
+
+   <div *ngIf="pedidos.length === 0">
+     <ion-label>No has realizado ningun pedido este mes</ion-label>
    </div>
 
 </ion-content>

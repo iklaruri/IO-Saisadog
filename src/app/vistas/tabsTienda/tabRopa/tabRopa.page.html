@@ -3,13 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-searchbar
-      [(ngModel)]="miBuscador"
-      placeholder="Buscar"
-      [showCancelButton]="miStringDeCancell"
-      (ionInput)="onInput($event)"
-      (ionCancel)="onCancel($event)">
-    </ion-searchbar>
+    <ion-input #termino type="text" (keyup)="buscarRopa(termino.value)" class="form-control" placeholder="Buscar"></ion-input>
   </ion-toolbar>
 </ion-header>
 

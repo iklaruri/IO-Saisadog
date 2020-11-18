@@ -18,4 +18,8 @@ export class ArtistaService {
   getArtistasNovedades(): Observable<Artista[]> {
     return this.httpClient.get<Artista[]>(URL_SERVICIO + "/artista/obtenerNovedades",httpOptions);
   }
+
+  getArtistasPorTermino(termino): Observable<Artista[]> {
+    return this.httpClient.get<Artista[]>(URL_SERVICIO + "/artista/obtener/" + termino,httpOptions);
+  }
 }

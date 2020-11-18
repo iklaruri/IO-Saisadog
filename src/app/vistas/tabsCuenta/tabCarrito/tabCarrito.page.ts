@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
+import {formatDate} from '@angular/common';
 import { exit } from 'process';
 
 @Component({
@@ -143,6 +143,7 @@ export class TabCarritoPage implements OnInit{
       }, err => {
         console.log(err);
       });
+      
     }else{
       loading.dismiss();
       return;
@@ -176,15 +177,7 @@ export class TabCarritoPage implements OnInit{
 
 
   obtenerFecha(){
-    let date = new Date();    
-    let month = ("0" + (date.getMonth() + 1)).slice(-2);
-    let year = date.getFullYear();
-    let day = ("0" + (date.getDay())).slice(-2);
-    let hour = ("0" + (date.getHours())).slice(-2);
-    let minutes = ("0" + (date.getMinutes())).slice(-2);
-    let seconds = ("0" + (date.getSeconds())).slice(-2);
-
-    let fecha = year + "-" + month  + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
+    let fecha=  formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
     return fecha;
   }
 
@@ -194,6 +187,7 @@ export class TabCarritoPage implements OnInit{
   }
 
   ngOnInit(){
+    this.obtenerFecha();
     this.obtenerGeolocalizacion();
   }
 

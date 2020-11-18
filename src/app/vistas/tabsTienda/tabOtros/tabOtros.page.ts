@@ -33,6 +33,28 @@ export class TabOtrosPage {
 
   }
 
+  async buscarOtrosPorTermino(termino)
+  {
+    this.productoService.getOtrosPorTermino(termino).subscribe(data => {
+      this.otros = data;
+
+    }, err => {
+      console.log(err);
+
+    });
+  }
+
+  buscarOtros(termino)
+  {
+    if(termino != '')
+    {
+      this.otros = [];
+      this.buscarOtrosPorTermino(termino);
+    }else{
+      this.obtenerProductos();
+    }
+  }
+
   mostrarProducto(codProducto)
   {
     let date_ob = new Date();

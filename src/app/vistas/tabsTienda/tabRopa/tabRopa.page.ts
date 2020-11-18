@@ -34,6 +34,18 @@ export class TabRopaPage {
 
   }
 
+  async buscarRopasPorTermino(termino)
+  {
+    this.productoService.getRopasPorTermino(termino).subscribe(data => {
+      this.ropas = data;
+      
+    }, err => {
+      console.log(err);
+
+    });
+  }
+
+
   mostrarProducto(codProducto)
   {
     let date_ob = new Date();
@@ -44,6 +56,17 @@ export class TabRopaPage {
 
     let fecha = year + "-" + month;
     this.router.navigateByUrl('/producto/' + codProducto + "/" + fecha);
+  }
+
+  buscarRopa(termino)
+  {
+    if(termino != '')
+    {
+      this.ropas = [];
+      this.buscarRopasPorTermino(termino);
+    }else{
+      this.obtenerProductos();
+    }
   }
 
   ngOnInit() {

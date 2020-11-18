@@ -39,11 +39,23 @@ export class ProductoService {
     return this.httpClient.get<Producto[]>(URL_SERVICIO + "/producto/obtenerNovedades",httpOptions);
   }
 
-  actualizarStock(producto:any):Observable<any> {
-    return this.httpClient.put(URL_SERVICIO + "/producto/actualizarStock",producto,httpOptions);
+  getDiscosPorTermino(termino:string):  Observable<Producto[]> {
+    return this.httpClient.get<Producto[]>(URL_SERVICIO + "/producto/obtenerDiscosPorTermino/" + termino,httpOptions);
+  }
+
+  getRopasPorTermino(termino:string):  Observable<Producto[]> {
+    return this.httpClient.get<Producto[]>(URL_SERVICIO + "/producto/obtenerRopasPorTermino/" + termino,httpOptions);
+  }
+
+  getOtrosPorTermino(termino:string):  Observable<Producto[]> {
+    return this.httpClient.get<Producto[]>(URL_SERVICIO + "/producto/obtenerOtrosPorTermino/" + termino,httpOptions);
   }
 
   actualizarRopaStock(producto:any):Observable<any> {
     return this.httpClient.put(URL_SERVICIO + "/talla/actualizarStock",producto,httpOptions);
+  }
+
+  actualizarStock(producto:any):Observable<any> {
+    return this.httpClient.put(URL_SERVICIO + "/producto/actualizarStock",producto,httpOptions);
   }
 }

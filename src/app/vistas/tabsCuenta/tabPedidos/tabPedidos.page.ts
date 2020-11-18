@@ -17,13 +17,14 @@ export class TabPedidosPage implements OnInit{
   {'nombre':'Mayo','valor':'05'},{'nombre':'Junio','valor':'06'},{'nombre':'Julio','valor':'07'},{'nombre':'Agosto','valor':'08'},
   {'nombre':'Septiembre','valor':'09'},{'nombre':'Octubre','valor':'10'},{'nombre':'Noviembre','valor':'11'},{'nombre':'Diciembre','valor':'12'}
   ];
+
   fecha;
   codUsuario;
   pedidos:Pedido[]=[];
   pedido:Pedido;
   detallePedidos:DetallePedido[]=[];
-  mostrar = false;
-  pedidoObtenido=false;
+  mostrar = -1;
+
 
   constructor(private ventaService:VentaService,private loadingController:LoadingController) {
     this.codUsuario = JSON.parse(localStorage.getItem('usuario'));
@@ -39,53 +40,38 @@ export class TabPedidosPage implements OnInit{
     await loading.present();
 
     this.ventaService.obtenerPedidos(this.codUsuario,this.fecha).subscribe(data => {
-      data.forEach(data => {
-        this.pedido = new Pedido();
-        this.pedido.id = data.idVenta;
-        this.pedido.fecha = data.fecha;
-        console.log(this.pedido);
-
-        if(this.pedido != null)
-        {
-          this.pedidoObtenido=true
-        }
-
-        if(this.pedidoObtenido)
-        {
-          this.ventaService.obtenerDetallesPedido(this.pedido.id,this.fecha).subscribe(data => {
-            console.log(data);
+        data.forEach(res => {
+         this.ventaService.obtenerDetallesPedido(res.idVenta,this.fecha).subscribe(data => {
+            this.pedido = new Pedido();
+            this.pedido.id = res.idVenta;
+            this.pedido.fecha = res.fecha;
             this.pedido.detallePedidos = data;
             this.pedidos.push(this.pedido);
-            this.detallePedidos=[];
-            this.pedidoObtenido=false;
-          }, err => {
-            console.log(err);
-            loading.dismiss();
           });
-        }
+          loading.dismiss();
 
-      });
+        });
 
-      loading.dismiss();
+      }, err => {
+        console.log(err);
+        loading.dismiss();
+      })
 
-    }, err => {
-      console.log(err);
-      loading.dismiss();
-    });
   }
 
   obtenerPedidos(mes)
   {
     this.fecha = this.anio + "-" + mes.valor;
     this.historialPedidos(this.codUsuario,this.fecha);
+    this.pedidos = [];
   }
 
-  mostrarDetallePedidos(){
-    if(this.mostrar === false){
-        this.mostrar=true;
-    }else{
-        this.mostrar=false;
-    }
+  mostrarDetallePedidos(index){
+   if(index==this.mostrar){
+     this.mostrar=-1;
+   }else{
+     this.mostrar=index;
+   }
 
   }
 

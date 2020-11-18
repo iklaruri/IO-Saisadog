@@ -33,6 +33,11 @@ export class ArtistasPage implements OnInit {
 
   }
 
+  buscarArtistas(termino)
+  {
+    
+  }
+
   mostrarProductos(codArtista)
   {
     this.router.navigateByUrl('artistas/productos/' + codArtista);

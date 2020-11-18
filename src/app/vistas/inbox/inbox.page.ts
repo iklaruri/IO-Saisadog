@@ -55,15 +55,9 @@ export class InboxPage implements OnInit {
     }
 
     async buscarProductosPorTermino(termino){
-      const loading = await this.loadingController.create(
-      {
-        message:'Cargando'
-      });
-
-      await loading.present();
-
+      
       this.productoService.getProductosPorTermino(termino).subscribe(data => {
-        this.productos = data;      
+        this.productos = data;
         this.productos.forEach(producto =>
         {
           if(producto.tipo=="CD" || producto.tipo=="Album Digital" || producto.tipo=="Vinilo")
@@ -81,10 +75,10 @@ export class InboxPage implements OnInit {
             this.otros.push(producto);
           }
         });
-        loading.dismiss();
+
       }, err => {
         console.log(err);
-        loading.dismiss();
+
       })
     }
 

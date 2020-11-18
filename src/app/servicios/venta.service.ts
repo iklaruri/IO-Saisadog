@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { URL_SERVICIO, httpOptions } from '../config/config';
+import { DetallePedido } from '../model/detallePedido';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,8 @@ export class VentaService {
     return this.httpClient.get(URL_SERVICIO + "/venta/obtener/" + codUsuario + "/" + fecha,httpOptions);
   }
 
-  obtenerDetallesPedido(codPedido,fecha): Observable<any>
+  obtenerDetallesPedido(codPedido,fecha): Observable<DetallePedido[]>
   {
-    return this.httpClient.get(URL_SERVICIO + "/detalleVenta/obtener/" + codPedido + "/" + fecha,httpOptions);
+    return this.httpClient.get<DetallePedido[]>(URL_SERVICIO + "/detalleVenta/obtener/" + codPedido + "/" + fecha,httpOptions);
   }
 }
