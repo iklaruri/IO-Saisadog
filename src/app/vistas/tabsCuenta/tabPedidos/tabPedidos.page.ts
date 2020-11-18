@@ -23,7 +23,7 @@ export class TabPedidosPage implements OnInit{
   pedido:Pedido;
   detallePedidos:DetallePedido[]=[];
   mostrar = false;
-
+  pedidoObtenido=false;
 
   constructor(private ventaService:VentaService,private loadingController:LoadingController) {
     this.codUsuario = JSON.parse(localStorage.getItem('usuario'));
@@ -44,16 +44,26 @@ export class TabPedidosPage implements OnInit{
         this.pedido.id = data.idVenta;
         this.pedido.fecha = data.fecha;
         console.log(this.pedido);
-        this.pedidos.push(this.pedido);        
-        this.ventaService.obtenerDetallesPedido(this.pedido.id,this.fecha).subscribe(data => {
-          console.log(data);
-          this.pedido.detallePedidos = data;
-          this.pedidos.push(this.pedido);
-          this.detallePedidos=[];
-        }, err => {
-          console.log(err);
-          loading.dismiss();
-        });
+
+        if(this.pedido != null)
+        {
+          this.pedidoObtenido=true
+        }
+
+        if(this.pedidoObtenido)
+        {
+          this.ventaService.obtenerDetallesPedido(this.pedido.id,this.fecha).subscribe(data => {
+            console.log(data);
+            this.pedido.detallePedidos = data;
+            this.pedidos.push(this.pedido);
+            this.detallePedidos=[];
+            this.pedidoObtenido=false;
+          }, err => {
+            console.log(err);
+            loading.dismiss();
+          });
+        }
+
       });
 
       loading.dismiss();
@@ -72,10 +82,11 @@ export class TabPedidosPage implements OnInit{
 
   mostrarDetallePedidos(){
     if(this.mostrar === false){
-      this.mostrar=true;
+        this.mostrar=true;
     }else{
-      this.mostrar=false;
+        this.mostrar=false;
     }
+
   }
 
   ngOnInit() {

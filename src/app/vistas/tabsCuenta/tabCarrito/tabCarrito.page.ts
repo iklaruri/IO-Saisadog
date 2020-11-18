@@ -176,8 +176,7 @@ export class TabCarritoPage implements OnInit{
 
 
   obtenerFecha(){
-    let date = new Date();
-    console.log(date);
+    let date = new Date();    
     let month = ("0" + (date.getMonth() + 1)).slice(-2);
     let year = date.getFullYear();
     let day = ("0" + (date.getDay())).slice(-2);
